@@ -11,6 +11,10 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.38.0",
+    "sequelize-cli": "^4.1.1"
   }
 }
