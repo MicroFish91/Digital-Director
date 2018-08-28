@@ -9,8 +9,13 @@ module.exports = (sequelize, DataTypes) => {
     uniformSize: DataTypes.STRING,
     instrument: DataTypes.STRING
   }, {});
-  student.associate = function(models) {
+  student.associate = function (models) {
     // associations can be defined here
+    student.belongsTo(models.group, {
+      through: 'student_group',
+      as: 'group',
+      foreignKey: 'student_id'
+    });
   };
   return student;
 };

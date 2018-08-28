@@ -9,23 +9,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       firstName: {
-        type: Sequelize.STRING(15)
+        type: Sequelize.STRING
       },
       lastName: {
-        type: Sequelize.STRING(15)
+        type: Sequelize.STRING
       },
       phoneNumber: {
-        type: Sequelize.STRING(10)
+        type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING(320),
-        unique: true
+        type: Sequelize.STRING
       },
       address: {
-        type: Sequelize.STRING(1024)
+        type: Sequelize.STRING
       },
       uniformSize: {
-        type: Sequelize.STRING(3)
+        type: Sequelize.STRING
       },
       instrument: {
         type: Sequelize.STRING
