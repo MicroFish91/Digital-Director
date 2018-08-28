@@ -3,8 +3,8 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.addColumn(
-      'student_groups',
-      'group_id',
+      'studentGroups',
+      'groupId',
       {
         type: Sequelize.INTEGER,
         references: {
@@ -17,6 +17,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('student_groups', 'group_id');
+    return queryInterface.removeColumn('studentGroups', 'groupId');
   }
 };

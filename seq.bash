@@ -4,5 +4,5 @@
 # sequelize model:generate --name group \
 # --attributes name:string,teacher:string,meetingRoom:string,meetingDates:string,meetingTime:string,description:string
 
-sequelize model:generate --name student_group \
+sequelize model:generate --name studentGroup \
 --attributes student_id:integer,group_id:integer

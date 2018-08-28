@@ -9,22 +9,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       firstName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(15)
       },
       lastName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(15)
       },
       phoneNumber: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(10)
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(320)
       },
       address: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1024)
       },
       uniformSize: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(3)
       },
       instrument: {
         type: Sequelize.STRING
