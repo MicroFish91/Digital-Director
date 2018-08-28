@@ -1,5 +1,6 @@
 var express          = require( 'express' )
   , app              = express()
+  , db               = require('./models')
   , server           = require( 'http' ).createServer( app ) 
   , passport         = require( 'passport' )
   , util             = require( 'util' )
@@ -46,6 +47,12 @@ app.set('view engine', 'ejs');
 app.use( express.static(__dirname + '/public'));
 app.use( cookieParser()); 
 app.use( bodyParser.json());
+
+app.use(express.static('public'));
+app.use(require('./routes/uniforms'));
+app.use(require('./routes/home'));
+app.use(require('./routes/events.js'));
+
 app.use( bodyParser.urlencoded({
 	extended: true
 }));
@@ -97,11 +104,10 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-server.listen( 3000 );
-
-
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   console.log('redirected back to login. please log in again.')
   res.redirect('/login');
 }
+
+server.listen( 3000 );

@@ -4,10 +4,16 @@
   "dependencies": {
     "connect-redis": "^3.3.3",
     "cookie-parser": "^1.4.3",
-    "ejs": ">= 0.0.0",
-    "express": ">= 0.0.0",
     "express-session": "^1.15.6",
     "passport": ">= 0.0.0",
-    "passport-google-oauth2": ">= 0.0.0"
+    "passport-google-oauth2": ">= 0.0.0",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.38.0",
+    "sequelize-cli": "^4.1.1"
   }
 }
