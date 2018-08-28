@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Events</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="events.css">
+  </head>
+  <body>
+
+    <h1>Event Planner</h1>
+
+    <br>
+
+    <!-- Add Event Field -->
+    <form>
+        <!-- Row 1 -->
+        <div class="form-row">
+
+            <div class="col">
+                Event Title: <input type="text" class="form-control" placeholder="Title">
+            </div>
+
+            <div class="col">
+                Event Location: <input type="text" class="form-control" placeholder="Location">
+            </div>
+
+            <div class="col">
+                Event Description: <input type="text" class="form-control" placeholder="Description">
+            </div>
+
+        </div>
+
+        <br>
+
+        <!-- Row 2 -->
+        <div class="form-row">
+            
+          <div class="col">
+            Start Date: <input type="date" class="form-control" placeholder="Start Date">
+          </div>
+
+          <div class="col">
+            End Date: <input type="date" class="form-control" placeholder="End Date">
+          </div>
+
+          <div class="col"></div>
+
+        </div>
+
+        <br>
+        <!-- Add Event Button -->
+        <button type="submit" class="btn btn-primary">Add Event</button>
+
+    </form>
+
+    <br>
+    <br>
+
+    <h2>Activity Log</h2>
+
+    <!-- Field Showing Currently Scheduled Activities -->
+    <div id="accordion">
+
+      <!-- Card Header -->
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <h3 id="month-8">August</h3>
+            </button>
+          </h5>
+        </div>
+    
+        <!-- Card Body -->
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          
+          <!-- Event Row -->
+          <div class="card-body row">
+
+            <!-- Monthly Event Title -->
+            <div class="col-6">
+              Event Title
+            </div>
+
+            <div class="col-3">
+              Start Date
+            </div>
+
+            <div class="col-3">
+              End Date
+            </div>
+
+
+          </div> <!-- End Card Body -->
+        </div>  <!-- End Collapse --> 
+
+      </div>  <!-- End Card --> 
+    </div> <!-- End Accordion --> 
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script src="event.js"></script>
+  </body>
+</html>
