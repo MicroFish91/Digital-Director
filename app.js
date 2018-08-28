@@ -8,6 +8,12 @@ app.use(express.static('public'));
 
 app.use(require('./routes/home'));
 
+app.set('view engine', 'ejs');
+
+app.use(express.static('public'));
+
+app.use(require('./routes/events.js'));
+
 app.get("/", (req, res) => {
     res.send("Hello Band Teachers");
 })
