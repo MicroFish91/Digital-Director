@@ -9,10 +9,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100)
       },
       teacher: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100)
       },
       meetingRoom: {
         type: Sequelize.STRING
@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       meetingTime: {
-        type: Sequelize.STRING
+        type: Sequelize.TIME
       },
       description: {
         type: Sequelize.STRING

@@ -1,5 +1,18 @@
 let express = require('express');
 let app = express();
+let db = require('./models');
+
+app.set('view engine', 'ejs');
+
+app.use(express.static('public'));
+
+app.use(require('./routes/home'));
+
+app.set('view engine', 'ejs');
+
+app.use(express.static('public'));
+
+app.use(require('./routes/events.js'));
 
 app.set('view engine', 'ejs');
 

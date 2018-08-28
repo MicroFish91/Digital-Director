@@ -15,3 +15,5 @@ sequelize model:generate --name instruments \
 
 
 
+sequelize model:generate --name studentGroup \
+--attributes student_id:integer,group_id:integer
