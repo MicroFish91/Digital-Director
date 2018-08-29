@@ -10,12 +10,21 @@
 			<a href="/login">Log In</a>
 			</p>
 		<% } else { %>
+
+			<p>ID: <%= user.id %></p>
+			<p>Name: <%= user.displayName %></p>
+			<p>Email: <%= user.email %></p>
+
 			<p>
 			<a href="/">Home</a> | 
 			<a href="/account">Account</a> | 
+			<a href="/events">Events</a> | 
+			<a href="/uniforms">Uniforms</a> | 
+			
 			<a href="/logout">Log Out</a>
 			</p>
 		<% } %>
-		<%- body %>
 	</body>
 </html>
+
+

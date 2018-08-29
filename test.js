@@ -1,5 +1,5 @@
 
-db = require('./models');
+// db = require('./models');
 
 // db.student.create({firstName:'Eric', lastName:'Ridenour', phoneNumber:'303-859-1685', email:'blah@blah.com', address:'33 blah lane', uniformSize:'L', instrument:'percussion'});
 
