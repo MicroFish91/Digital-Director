@@ -13,7 +13,7 @@ var express         = require('express'),
 
 app.use(require('./routes/uniforms'));
 app.use(require('./routes/home'));
-app.use(require('./routes/events.js'));
+app.use(require('./routes/events'));
 
 var strategy = new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
