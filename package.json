@@ -2,12 +2,19 @@
   "name": "passport-google-oauth2-example",
   "version": "0.0.0",
   "dependencies": {
+<<<<<<< HEAD
     "bcrypt": "^3.0.0",
+=======
+>>>>>>> 6b401d33df2ba873f744bff547d388daf447d1df
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
     "connect-redis": "^3.3.3",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.6.1",
+<<<<<<< HEAD
+=======
+    "ejs-lint": "^0.3.0",
+>>>>>>> 6b401d33df2ba873f744bff547d388daf447d1df
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "passport": ">= 0.0.0",
