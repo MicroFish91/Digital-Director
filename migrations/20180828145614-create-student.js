@@ -20,6 +20,18 @@ module.exports = {
       email: {
         type: Sequelize.STRING(320)
       },
+      parentname1: {
+        type: Sequelize.STRING(30)
+      },
+      parentname2: {
+      type: Sequelize.STRING(15)
+      },
+      parentPhoneNumber: {
+        type: Sequelize.STRING(10)
+      },
+      parentEmail: {
+        type: Sequelize.STRING(320)
+      },
       address: {
         type: Sequelize.STRING(1024)
       },

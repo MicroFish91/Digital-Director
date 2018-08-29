@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     lastName: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
     email: DataTypes.STRING,
+    parentname1: DataTypes.STRING,
+    parentname2: DataTypes.STRING, 
+    parentPhoneNumber: DataTypes.STRING,
+    parentEmail: DataTypes.STRING,
     address: DataTypes.STRING,
     uniformSize: DataTypes.STRING,
     instrument: DataTypes.STRING

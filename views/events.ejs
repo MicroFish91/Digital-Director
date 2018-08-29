@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="stylesheet" href="events.css">
-    <script type="text/javascript" src="/scripts/moment.min.js"></script>
+    <link rel="stylesheet" href="./datetimepicker/jquery.datetimepicker.min.css">
   </head>
   <body>
 
@@ -23,15 +23,15 @@
         <div class="form-row">
 
             <div class="col">
-                Event Title: <input type="text" class="form-control" placeholder="Title">
+                Event Title: <input type="text" class="form-control" placeholder="Title" required>
             </div>
 
             <div class="col">
-                Event Location: <input type="text" class="form-control" placeholder="Location">
+                Event Location: <input type="text" class="form-control" placeholder="Location" required>
             </div>
 
             <div class="col">
-                Event Description: <input type="text" class="form-control" placeholder="Description">
+                Event Description: <input type="text" class="form-control" placeholder="Description" required>
             </div>
 
         </div>
@@ -44,26 +44,16 @@
           <div class='col'>
             Start Time: 
             <div class="form-group">
-              <div class='input-group date' id='datetimepicker1'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+              <input class='form-control' id='datetimepicker' placeholder='yyyy-mm-dd hh:mm' required>
               </div>
             </div>
-          </div>
 
           <div class='col'>
             End Time: 
             <div class="form-group">
-              <div class='input-group date' id='datetimepicker1'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+              <input class='form-control' id='datetimepicker1' placeholder='yyyy-mm-dd hh:mm' required>
               </div>
             </div>
-          </div>
 
           <div class="col"></div>
 
@@ -124,17 +114,13 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <script src="event.js"></script>
-    <script src="moment.js"></script>
-    <script>
-      moment().format();
-    </script>
+    <script src="./datetimepicker/jquery.datetimepicker.full.min.js"></script>
     <script type="text/javascript">
       $(function () {
-        $('#datetimepicker1').datetimepicker({
-        });
+        $('#datetimepicker').datetimepicker();
+        $('#datetimepicker1').datetimepicker();
       });
-  </script>
-  
+    </script>
+    <script src="event.js"></script>
   </body>
 </html>
