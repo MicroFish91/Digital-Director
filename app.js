@@ -11,6 +11,11 @@ var express         = require('express'),
     GOOGLE_CLIENT_ID = "521837067682-ojjmkmgmnpquk89i899gphv2dvub3t46.apps.googleusercontent.com",
     GOOGLE_CLIENT_SECRET = "KFfcGOvPDt1MR82t7AzKRB8_";
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+
 app.use(require('./routes/uniforms'));
 app.use(require('./routes/home'));
 app.use(require('./routes/events.js'));
@@ -59,9 +64,6 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 app.use(session({
   key: 'user_sid',
