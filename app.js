@@ -19,7 +19,9 @@ var express         = require('express'),
     app.use(require('./routes/home'));
     app.use(require('./routes/events.js'));
     app.use(require('./routes/updatestudent'));
-    app.use(require('./routes/deletestudent'));    
+    app.use(require('./routes/deletestudent')); 
+    app.use(require('./routes/createstudent'));    
+       
 
 var strategy = new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
