@@ -93,20 +93,21 @@ function ensureAuthenticated(req, res, next) {
 
 app.get('/', function (req, res) {
   res.render('index', {
-    user: req.user
-
+    user: req.user,
+    page: 'index'
   });
 });
-
 app.get('/account', ensureAuthenticated, function (req, res) {
   res.render('account', {
-    user: req.user
+    user: req.user,
+    page: 'account'
   });
 });
 
 app.get('/login', ensureAuthenticated, function (req, res) {
   res.render('login', {
-    user: req.user
+    user: req.user,
+    page: 'login'
   });
 });
 
