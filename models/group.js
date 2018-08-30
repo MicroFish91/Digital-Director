@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   group.associate = function(models) {
     // associations can be defined here
     group.belongsToMany(models.student, {through: 'studentgroup'});
+    group.belongsToMany(models.events, {through: 'eventGroups'});
   };
   return group;
 };

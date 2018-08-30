@@ -17,7 +17,7 @@ var express         = require('express'),
 
     app.use(require('./routes/uniforms'));
     app.use(require('./routes/home'));
-    app.use(require('./routes/events.js'));
+    app.use(require('./routes/events'));
     app.use(require('./routes/updatestudent'));
     app.use(require('./routes/deletestudent')); 
     app.use(require('./routes/createstudent'));    
