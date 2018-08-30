@@ -18,6 +18,10 @@ var express         = require('express'),
     app.use(require('./routes/uniforms'));
     app.use(require('./routes/home'));
     app.use(require('./routes/events'));
+    app.use(require('./routes/updatestudent'));
+    app.use(require('./routes/deletestudent')); 
+    app.use(require('./routes/createstudent'));    
+       
 
 var strategy = new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
@@ -62,6 +66,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('/', function (req, res) {
+  res.render('index', {
+    user: req.user,
+    page: 'index'
+  });
+});
+
 app.get('/auth/google', passport.authenticate('google', {
   scope: [
     'https://www.googleapis.com/auth/plus.login',
@@ -91,12 +102,6 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/');
 }
 
-app.get('/', function (req, res) {
-  res.render('index', {
-    user: req.user,
-    page: 'index'
-  });
-});
 app.get('/account', ensureAuthenticated, function (req, res) {
   res.render('account', {
     user: req.user,
