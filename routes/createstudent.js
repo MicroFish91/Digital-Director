@@ -17,7 +17,8 @@ router.post('/createstudent', (req, res) => {
         parentname2: req.body.parentname2,
         parentPhoneNumber: req.body.parentPhone.replace(/[^\d]/g, ""),
         parentEmail: req.body.parentEmail,
-        address: req.body.address
+        address: req.body.address,
+        teacherId: 1
         },
     )
     .then(()=> {

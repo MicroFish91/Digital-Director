@@ -7,6 +7,9 @@ router.get('/home', (req, res) => {
     let students = [];
     db.student.findAll({
             attributes: ['id', 'firstName', 'lastName', 'phoneNumber', 'email', 'instrument', 'parentname1', 'parentname2', 'parentPhoneNumber', 'parentEmail', 'address'],
+            where: {
+                teacherId: 1
+            },
             order:['lastName']
         })
         .then((results) => {

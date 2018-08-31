@@ -1,9 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const teacher = sequelize.define('teacher', {
-    id: { 
-      type: DataTypes.STRING, 
-      primaryKey: true
+    uniqueAuth: {
+      type: DataTypes.STRING,
+      unique: true
     },
     displayName:{
       type: DataTypes.STRING,

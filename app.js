@@ -109,7 +109,7 @@ app.get('/account', ensureAuthenticated, function (req, res) {
   });
 });
 
-app.get('/login', ensureAuthenticated, function (req, res) {
+app.get('/login', function (req, res) {
   res.render('login', {
     user: req.user,
     page: 'login'
@@ -123,7 +123,7 @@ app.get('/logout', function (req, res) {
 });
 
 app.get('/layout', ensureAuthenticated, function (req, res) {
-  db.teacher.create({id: req.user.id, name: req.user.displayName, email: req.user.email});
+  db.teacher.create({uniqueAuth: req.user.id, name: req.user.displayName, email: req.user.email});
   res.render('layout', {
     user: req.user
   });
