@@ -1,16 +1,25 @@
 $(function(){
 
-    // // Call Get Method
-    // $.get('/events', function(jsonObject){
-    //     updateResponse(jsonObject);
-    // });
+    // Add Click Event to Add Event Button
+    $("#addEvent").click(function(event){
 
-    // $("#submitButton").click(function(event){
-    //     event.preventDefault();
+        let $eventTitle = $('#eventTitle').val();
+        let $eventLocation = $('#eventLocation').val();
+        let $eventDescription = $('#eventDescription').val();
+        let $startTime = $('#datetimepicker').val();
+        let $endTime = $('#datetimepicker1').val();
 
-    //     $.post('/api', {title: "test", email: "testing", checked: "Testingagain"
-    //     }, updateResponse);
+        if ($eventTitle && $eventLocation && $eventDescription && $startTime && $endTime) {
 
-    // });
+            // Post form information to the database
+            $.post('/events', {title: $eventTitle, location: $eventLocation, description: $eventDescription, startDate: $startTime, endDate: $endTime}, updateResponse($eventTitle, $eventLocation, $eventDescription, $startTime, $endTime));
+
+        }
+
+    });
 
 });
+
+function updateResponse(eventTitle, eventLocation, eventDescription, startTime, endTime){
+    console.log(`${eventTitle}, ${eventLocation}, ${eventDescription}, ${startTime}, ${endTime}`);
+}

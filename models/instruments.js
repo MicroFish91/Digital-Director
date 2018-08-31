@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     current_est_value: DataTypes.INTEGER
   }, {});
   instruments.associate = function(models) {
-    // associations can be defined here
+    instruments.belongsTo(models.student);
   };
   return instruments;
 };
