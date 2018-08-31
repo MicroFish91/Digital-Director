@@ -11,23 +11,21 @@ var express         = require('express'),
     GOOGLE_CLIENT_ID = "521837067682-ojjmkmgmnpquk89i899gphv2dvub3t46.apps.googleusercontent.com",
     GOOGLE_CLIENT_SECRET = "KFfcGOvPDt1MR82t7AzKRB8_";
 
+    var SequelizeStore = require('connect-session-sequelize')(session.Store);
+    var myStore = new SequelizeStore({
+      db: db.sequelize
+    })
+
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cookieParser());
-
-    app.use(require('./routes/uniforms'));
-    app.use(require('./routes/home'));
-    app.use(require('./routes/events'));
-    app.use(require('./routes/updatestudent'));
-    app.use(require('./routes/deletestudent')); 
-    app.use(require('./routes/createstudent'));    
        
 
 var strategy = new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:3000/auth/google/callback",
-    passReqToCallback: false
+    passReqToCallback: true
   },
   function (request, accessToken, refreshToken, profile, done) {
 
@@ -41,6 +39,7 @@ passport.use(strategy);
 
 // Serializing and Deserializing
 passport.serializeUser(function (user, done) {
+  // console.log(user);
   done(null, user);
 });
 
@@ -56,6 +55,7 @@ app.use(express.static('public'));
 app.use(session({
   key: 'user_id',
   secret: 'secret_code',
+  store: myStore,
   resave: true,
   saveUninitialized: true,
   cookie: {
@@ -63,6 +63,7 @@ app.use(session({
   }
 }));
 
+myStore.sync();
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -84,23 +85,17 @@ app.get('/auth/google/callback',
   passport.authenticate('google', {
     successRedirect: '/layout',
     failureRedirect: '/'
-  }));
-
-
-app.use((req, res, next) => {
-  if (req.cookies.user_id && !req.session.user) {
-      res.clearCookie('connect.sid');
   }
-  next();
-})
+));
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  console.log('redirected back to login. please log in again.')
-  res.redirect('/');
-}
+
+// app.use((req, res, next) => {
+//   if (req.cookies.user_id && !req.session.user) {
+//       res.clearCookie('user_id');
+//   }
+//   next();
+// })
+
 
 app.get('/account', ensureAuthenticated, function (req, res) {
   res.render('account', {
@@ -109,24 +104,71 @@ app.get('/account', ensureAuthenticated, function (req, res) {
   });
 });
 
+// app.get('/home', function (req, res) {
+//   res.render('home', {
+//     user: req.user,
+//     page: 'home'
+//   });
+// });
+
 app.get('/login', function (req, res) {
+  // res.redirect('/testlogin.html')
   res.render('login', {
     user: req.user,
     page: 'login'
   });
+  // res.sendFile(__dirname + '/testlogin.html');
 });
 
 app.get('/logout', function (req, res) {
-  console.log('successfully logged out: ' + req.user.displayName)
   req.logout();
-  res.redirect('/');
+  res.redirect('/login');
 });
 
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    console.log('you are siged in.')
+    return next();
+  }
+  console.log('redirected back to login. please log in again.')
+  res.redirect('/login');
+}
+
+app.use(ensureAuthenticated);
+
+app.use(require('./routes/uniforms'));
+// app.use(require('./routes/layout'));
+app.use(require('./routes/home'));
+app.use(require('./routes/events'));
+app.use(require('./routes/updatestudent'));
+app.use(require('./routes/deletestudent')); 
+app.use(require('./routes/createstudent'));   
+// app.use(require('./routes/testlogin')); 
+
 app.get('/layout', ensureAuthenticated, function (req, res) {
-  db.teacher.create({uniqueAuth: req.user.id, name: req.user.displayName, email: req.user.email});
+  
+  console.log('user object: ' + req.user.id);
+  // db.teacher.create({id: req.user.id, name: req.user.displayName, email: req.user.email});
   res.render('layout', {
     user: req.user
   });
+});
+
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+ 
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+ 
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
 server.listen(3000);
