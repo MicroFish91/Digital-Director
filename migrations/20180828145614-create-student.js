@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.STRING(30)
       },
       parentname2: {
-      type: Sequelize.STRING(15)
+      type: Sequelize.STRING(30)
       },
       parentPhoneNumber: {
         type: Sequelize.STRING(10)
