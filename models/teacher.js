@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     displayName: DataTypes.STRING,
-    email: DataTypes.STRING
+    email: DataTypes.STRING 
   }, {});
   teacher.associate = function (models) {
     // associations can be defined here

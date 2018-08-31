@@ -11,6 +11,11 @@ var express         = require('express'),
     GOOGLE_CLIENT_ID = "521837067682-ojjmkmgmnpquk89i899gphv2dvub3t46.apps.googleusercontent.com",
     GOOGLE_CLIENT_SECRET = "KFfcGOvPDt1MR82t7AzKRB8_";
 
+    // var sequlizeStore = require('connect-sessions-store')
+    // var myStore = new SequelizeStore({
+    //   db: db.sequelize
+    // })
+
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cookieParser());
@@ -23,7 +28,7 @@ var strategy = new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:3000/auth/google/callback",
-    passReqToCallback: false
+    passReqToCallback: true
   },
   function (request, accessToken, refreshToken, profile, done) {
 
@@ -52,6 +57,7 @@ app.use(express.static('public'));
 app.use(session({
   key: 'user_id',
   secret: 'secret_code',
+  // store: myStore,
   resave: true,
   saveUninitialized: true,
   cookie: {
@@ -111,16 +117,16 @@ app.get('/login', ensureAuthenticated, function (req, res) {
 });
 
 app.get('/logout', function (req, res) {
-  console.log('successfully logged out: ' + req.user.displayName)
   req.logout();
   res.redirect('/');
 });
 
 app.get('/layout', ensureAuthenticated, function (req, res) {
-  db.teacher.create({id: req.user.id, name: req.user.displayName, email: req.user.email});
+  // db.teacher.create({id: req.user.id, name: req.user.displayName, email: req.user.email});
   res.render('layout', {
     user: req.user
   });
+  // console.log(req.user);
 });
 
 server.listen(3000);
