@@ -5,12 +5,18 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING, 
       primaryKey: true
     },
-    displayName: DataTypes.STRING,
-    email: DataTypes.STRING 
+    displayName:{
+      type: DataTypes.STRING,
+      unique: true
+    },
+    email: {
+      type: DataTypes.STRING,
+      unique: true
+    }
   }, {});
   teacher.associate = function (models) {
     // associations can be defined here
-    // teacher.hasMany(models.group, {through: 'studentgroup'});
+    teacher.hasMany(models.student, {as: 'students'});
   };
   return teacher;
 };
