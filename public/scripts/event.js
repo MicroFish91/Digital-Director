@@ -3,8 +3,6 @@ $(function(){
     // Add Click Event to Add Event Button
     $("#addEvent").click(function(event){
 
-        let today = new Date();
-
         let $eventTitle = $('#eventTitle').val();
         let $eventLocation = $('#eventLocation').val();
         let $eventDescription = $('#eventDescription').val();
@@ -40,9 +38,7 @@ $(function(){
                 event.preventDefault();
 
             }
-
         }
-
     });
 
     // Add Click Event to Trash Buttons

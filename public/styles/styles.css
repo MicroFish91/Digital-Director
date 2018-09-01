@@ -15,3 +15,18 @@
     text-decoration: none !important;        
     border: none !important;
 }
+
+.label-space {
+    margin-top: 2em;
+}
+
+/* //media query  hide on small*/
+
+@media only screen and (max-width: 768px) {
+    #labels {
+        display: none;
+    }
+    label, .label-space {
+        margin-top: 1.5rem;
+    }
+}
