@@ -19,6 +19,14 @@ var express         = require('express'),
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cookieParser());
+
+    app.use(require('./routes/uniforms'));
+    app.use(require('./routes/home'));
+    app.use(require('./routes/events'));
+    app.use(require('./routes/deleteevent'));
+    app.use(require('./routes/updatestudent'));
+    app.use(require('./routes/deletestudent')); 
+    app.use(require('./routes/createstudent'));    
        
 
 var strategy = new GoogleStrategy({
