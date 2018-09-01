@@ -28,23 +28,27 @@ router.get('/events', function(req, res){
         var accordionNumber = accordionNames.length;
         var eventNumber = eventsPerAccordion(result, accordionNames);
 
-        console.log(accordionNames);
-        console.log(accordionNumber);
-        console.log(eventNumber);
-        console.log(result[0].id);
-        
         res.render('events', {
             eventsArray: result,
             accordionCount: accordionNumber,
             accordionNames: accordionNames,
-            eventNumber: eventNumber
+            eventNumber: eventNumber,
+            page: "events",
+            success: true
         });
 
     })
     .catch(function(error){
         console.log(error);
-        res.send("<p> Error Loading Page </p>");
-    })
+        res.render('events', {
+            eventsArray: [],
+            accordionCount: 1,
+            accordionNames: [],
+            eventNumber: [],
+            page: "events",
+            success: false
+        });
+    });
     
 
 });
@@ -57,7 +61,7 @@ router.post('/events', function(req, res){
     .then(function(results){
         console.log(results);
 
-        res.redirect('events');
+        res.redirect('/events');
 
     })
     .catch(function(error){
@@ -69,7 +73,7 @@ router.post('/events', function(req, res){
 
 module.exports = router;
 
-// Checks for number of unique accordions that will be needed in the ejs file and also reformats to be ejs friendly
+// Checks for number of unique accordions that will be needed in the ejs file and also reformats to be ejs friendly, returns array
 function accordionSort(eventsArray){
 
     // Map dates (yyyy-mm) into new array
@@ -147,7 +151,7 @@ function accordionSort(eventsArray){
 
 }
 
-// Sorts the number of events per accordion into an array for ejs use
+// Sorts the number of events per accordion into an array for ejs use, returns array
 function eventsPerAccordion(eventsArray, accordionArray){
 
     // Declare Variables

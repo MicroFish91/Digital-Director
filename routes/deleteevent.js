@@ -12,9 +12,16 @@ router.use(bodyParser.json());
 // Events - POST
 router.post('/deleteevent', function(req, res){
 
-    console.log("test: " + req.body.id);
-
-
+    db.events.destroy({
+        where: {
+           id: req.body.id 
+        }
+      }).then(function(rowDeleted){ // rowDeleted will return number of rows deleted
+        res.redirect('/events');
+      })
+      .catch(function(error){
+          console.log(error);
+      })
 
 });
 
