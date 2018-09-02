@@ -1,0 +1,304 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Instruments</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+
+    <%- include partials/header.ejs %>
+        <div class="container">
+            <h1 class="display-4 text-center m-5">Inventory</h1>
+            <div class='row text-center mb-3'>
+                <div class='col-md-3'>
+                    <h4>
+                        <button class='orderType'>Type</button>
+                    </h4>
+                </div>
+                <div class='col-md-3'>
+                    <h4>
+                        <button class='orderInstrument'>Instrument</button>
+                    </h4>
+                </div>
+                <div class='col-md-3'>
+                    <h4>
+                        <button class='orderBrand'>Brand</button>
+                    </h4>
+                </div>
+                <div class='col-md-3'>
+                    <h4>Student</h4>
+                </div>
+            </div>
+            <div class='accordian' id="student_rows">
+                <!-- add instrument -->
+                    <div class='card'>
+                            <div class='card-header' id='heading'>
+                                <button class="btn btn-link container-fluid" type="button" data-toggle="collapse" data-target="#collapse"              aria-expanded="false"
+                                    aria-controls="collapse">
+                                    <div class="row">
+                                        <div class='col-md-3 info'>
+                                            <strong>Add Instrument</strong>
+                                        </div>  
+                                        <div class='col-md-3 info' name='instrument'>
+                                        </div>
+                                        <div class='col-md-3 info' name='brand'>
+                                        </div>
+                                        <div class='col-md-3 info' name='studentName1'>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <div id="collapse" class="collapse" aria-labelledby="heading" data-parent="#student_rows">
+                                <div class="card-body">
+                                    <form action='/createInstrument' method='POST'>
+                                        <!-- row 1 -->
+                                        <div class='row'>
+                                            <div class='col-md-3'>
+                                                <p>Type</p>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <p>Instrument</p>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <p>Brand</p>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <p>Student</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <select class="form-control" name='instrumentType' id='instrumentBar' value="">
+                                                    <% instrumentTypeArray.forEach(function(e){ %>
+                                                        <option><%= e %></option>
+                                                    <% }) %>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input name='instrument' type="text" value="">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input name='brand'type="text" value="">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select class="form-control" name='studentName1'>
+                                                    <% studentListArray.forEach(function(e){ %>
+                                                        <option><%= e.firstName %>  <%= e.lastName %></option>
+                                                    <% }) %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- row 2 -->
+                                        <div class='row mt-5'>
+                                            <div class='col-md-3'>
+                                                <p>Model #</p>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <p>Serial #</p>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <p>Year Purchased</p>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <p>Condition</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input name='modelNumber' type="text" value="">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input name='serialNumber'type="text" value="">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input name='yearPurchased' type="text" value="">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input name='condition' type="text" value="">
+                                            </div>
+                                        </div>
+                                        <!-- row -->
+                                        <div class='row mt-5'>
+                                            <div class='col-md-6'>
+                                                <p>Cost</p>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <p>Current Estimated Value</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input name='cost' style="width:85%" type="text" value="">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input name='currentEstValue'type="text" value="">
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="row justify-content-start pt-5">
+                                            <div class="col-md-2">
+                                                <button id='instrumentButton' type="submit" class="btn btn-dark">Create Instrument</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
+                <% for (let i = 0; i < instrumentArray.length; i++) { %>
+                    <div class='card'>
+                        <div class='card-header' id='heading<%=i%>'>
+                            <button class="btn btn-link container-fluid" type="button" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="false"
+                                aria-controls="collapse<%=i%>">
+                                <div class="row">
+                                    <div class='col-md-3 info'>
+                                        <%= instrumentArray[i].instrument_type%>
+                                    </div>
+                                    <div class='col-md-3 info' name='instrument'>
+                                        <%= instrumentArray[i].instrument %>
+                                    </div>
+                                    <div class='col-md-3 info' name='brand'>
+                                        <%= instrumentArray[i].brand%>
+                                    </div>
+                                    <div class='col-md-3 info' id='studentNameDisplay'>
+                                            <%= instrumentArray[i].name%>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                        <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading<%=i%>" data-parent="#student_rows">
+                            <div class="card-body">
+                                <form action='/instrumentUpdate/<%=instrumentArray[i].id%>' method='POST'>
+                                    <!-- row 1 -->
+                                    <div class='row'>
+                                        <div class='col-md-3'>
+                                            <p>Type</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Instrument</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Brand</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Student</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <select class="form-control" name='instrumentType' id='instrumentBar'>
+                                                <% instrumentTypeArray.forEach(function(e){ %>
+                                                    <% if (instrumentArray[i].instrument_type === e){ %>
+                                                        <option selected value='<%= instrumentArray[i].instrument_type %>'><%= e %></option>
+                                                        <% } else { %>
+                                                            <option><%= e %></option>
+                                                    <% } %>
+                                                <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input name='instrument' type="text" value="<%= instrumentArray[i].instrument%>">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input name='brand'type="text" value="<%=instrumentArray[i].brand%>">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select class="form-control" id='studentSelect' name='studentName1'>
+                                                <% studentListArray.forEach(function(e){ %>
+                                                    <% if (`${e.firstName} ${e.lastName}` === instrumentArray[i].name){ %>
+                                                    <option selected value='<%= instrumentArray[i].name%>'><%= e.firstName %>  <%= e.lastName %></option>
+                                                    <% } else { %>
+                                                        <option><%= e.firstName %>  <%= e.lastName %></option>
+                                                    <% } %>   
+                                                <% }) %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- row 2 -->
+                                    <div class='row mt-5'>
+                                        <div class='col-md-3'>
+                                            <p>Model #</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Serial #</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Year Purchased</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Condition</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input name='modelNumber' type="text" value="<%=instrumentArray[i].model_number%>">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input name='serialNumber'type="text" value="<%=instrumentArray[i].serial_number%>">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input name='yearPurchased' type="text" value="<%= instrumentArray[i].year_purchased%>">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input name='condition' type="text" value="<%=instrumentArray[i].condition%>">
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class='row mt-5'>
+                                        <div class='col-md-6'>
+                                            <p>Cost</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Current Estimated Value</p>
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input name='cost' style="width:85%" type="text" value="<%=instrumentArray[i].cost%>">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input name='currentEstValue'type="text" value="<%=instrumentArray[i].current_est_value%>">
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-start pt-5">
+                                        <div class="col-md-2">
+                                            <button id='instrumentButton' type="submit" class="btn btn-dark">Update Instrument</button>
+                                        </div>
+                                </form>
+                                    <div class="col-md-2">
+                                        <form action="/deleteInstrument/<%=instrumentArray[i].id%>" method="POST">
+                                            <button type="submit" class="btn btn-danger">Delete Instrument</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+    </div>
+</div>
+
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+            crossorigin="anonymous"></script>
+        <script src='/scripts/instruments.js'></script>
+</body>
+

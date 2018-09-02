@@ -7,10 +7,11 @@ module.exports = (sequelize, DataTypes) => {
     brand: DataTypes.STRING,
     model_number: DataTypes.STRING,
     serial_number: DataTypes.STRING,
-    year_purchased: DataTypes.INTEGER,
+    year_purchased: DataTypes.STRING,
     condition: DataTypes.STRING,
-    cost: DataTypes.INTEGER,
-    current_est_value: DataTypes.INTEGER
+    cost: DataTypes.STRING,
+    current_est_value: DataTypes.STRING,
+    name: DataTypes.STRING
   }, {});
   instruments.associate = function(models) {
     instruments.belongsTo(models.student);
