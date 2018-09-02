@@ -115,7 +115,15 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label class="label-space" for="checkedOut">Equipment checked out:</label>
-                                            <textarea name="checkedOut" class='form-control' type="text" value=""></textarea>
+                                            <!-- <input name="checkedOut" class='form-control' type="text" readonly -->
+                                                <% if (students[i].uniforms.length > 0) { %> 
+                                                    <ul>
+                                                        <% for(let j = 0; j < students[i].uniforms.length; j++) { %>
+                                                        <li><%=students[i].uniforms[j].type%></li>
+                                                        <% } %>
+                                                    </ul>
+                                                <% } %>
+                                                <!-- </input> -->
                                         </div>
                                     </div>
                                     <div class="row pt-5">
