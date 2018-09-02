@@ -18,6 +18,13 @@ var express         = require('express'),
     app.use(require('./routes/uniforms'));
     app.use(require('./routes/home'));
     app.use(require('./routes/events'));
+    app.use(require('./routes/instruments'));
+    app.use(require('./routes/instrumentUpdate'));
+    app.use(require('./routes/createInstrument'));
+    app.use(require('./routes/deleteInstrument')); 
+    app.use(require('./routes/uniformUpdate')); 
+    app.use(require('./routes/deleteUniform'));
+    app.use(require('./routes/createUniform'));
 
 var strategy = new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,

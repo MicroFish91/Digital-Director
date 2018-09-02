@@ -1,7 +1,4 @@
 
-.uniformInputBox{
-    margin-top: 5%;
-}
 .student-list {
     width: 30%;
 }
@@ -15,3 +12,32 @@
     text-decoration: none !important;        
     border: none !important;
 }
+
+
+/* uniforms */
+
+.uniformInputBox{
+    margin-top: 8%;
+}
+
+#colorBox{
+    height: 100vh;
+    background-color: aqua;
+}
+
+/* instruments */
+
+button.orderType { 
+    background:none;border:none; 
+    cursor:pointer;
+}
+button.orderInstrument { 
+    background:none;border:none; 
+    cursor:pointer;
+}
+button.orderBrand { 
+    background:none;border:none; 
+    cursor:pointer;
+}
+
+

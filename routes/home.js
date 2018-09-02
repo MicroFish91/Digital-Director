@@ -11,6 +11,7 @@ router.get('/home/?', (req, res) => {
             for (let i = 0; i < results.length; i++) {
                 students.push(results[i].dataValues);
             }
+        
         }).then(function (results) {
             res.render('home', {
                 students: students
