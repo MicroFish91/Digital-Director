@@ -80,7 +80,7 @@ function dress(){
         'type': 'text',
         'name': 'dressSize'
         });
-    $("#dressSizeBar").append($dressSize);
+    $("#jacketSizeBar").append($dressSize);
 
     dressSizeArray.forEach(function(e){
         

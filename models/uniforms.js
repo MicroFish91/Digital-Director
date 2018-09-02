@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.STRING,
     pant_size: DataTypes.STRING,
     jacket_size: DataTypes.STRING,
-    dress_size: DataTypes.STRING
+    dress_size: DataTypes.STRING,
+    name:DataTypes.STRING
   }, {});
   uniforms.associate = function(models) {
     uniforms.belongsTo(models.student);

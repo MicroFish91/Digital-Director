@@ -20,6 +20,10 @@ module.exports = {
       dress_size: {
         type: Sequelize.STRING
       },
+      name: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
