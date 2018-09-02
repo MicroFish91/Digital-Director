@@ -1,0 +1,171 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Inventory</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+
+    <%- include partials/header.ejs %>
+
+        <div class="container">
+            <h1 class="display-4 text-center m-5">Inventory</h1>
+            <div class='row text-center mb-3'>
+                <div class='col-md-3'>
+                    <h4>Type</h4>
+                </div>
+                <div class='col-md-3'>
+                    <h4>Instrument</h4>
+                </div>
+                <div class='col-md-3'>
+                    <h4>Brand</h4>
+                </div>
+                <div class='col-md-3'>
+                    <h4>Student</h4>
+                </div>
+            </div>
+            <div class='accordian' id="student_rows">
+                <% for (let i = 0; i < students.length; i++) { %>
+                    <div class='card'>
+                        <div class='card-header' id='heading<%=i%>'>
+                            <button class="btn btn-link container-fluid" type="button" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="false"
+                                aria-controls="collapse<%=i%>">
+                                <div class="row">
+                                    <div class='col-md-3 info'>
+                                        <%= students[i].firstName%>
+                                            <%= students[i].lastName%>
+                                    </div>
+                                    <div class='col-md-3 info'>
+                                        <%= '(' + students[i].phoneNumber.slice(0,3) + ') ' + students[i].phoneNumber.slice(3,6) + '-' + students[i].phoneNumber.slice(6)%>
+                                    </div>
+                                    <div class='col-md-3 info'>
+                                        <%= students[i].email%>
+                                    </div>
+                                    <div class='col-md-3 info'>
+                                        <%= students[i].instrument%>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                        <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading<%=i%>" data-parent="#student_rows">
+                            <div class="card-body">
+                                <form action="">
+                                    <!-- row 1 -->
+                                    <div class='row'>
+                                        <div class='col-md-3'>
+                                            <p>Name</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Phone Number</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Email</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Instrument</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input type="text" value="<%=students[i].firstName%> <%=students[i].lastName%>">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" value="<%= '(' + students[i].phoneNumber.slice(0,3) + ') ' + students[i].phoneNumber.slice(3,6) + '-' + students[i].phoneNumber.slice(6)%>">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" value="<%=students[i].email%>">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" value="<%=students[i].instrument%>">
+                                        </div>
+                                    </div>
+                                    <!-- row 2 -->
+                                    <div class='row mt-5'>
+                                        <div class='col-md-3'>
+                                            <p>Parent/Guardian 1</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Parent/Guardian 2</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Parent Phone</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Parent Email</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input type="text" value="<%=students[i].parentname1%>">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" value="<%=students[i].phonename2%>">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" 
+                                            <% if (students[i].parentPhoneNumber != null) { %>
+                                                value=" <%= '(' + students[i].parentPhoneNumber.slice(0,3) + ') ' + students[i].parentPhoneNumber.slice(3,6) + '-' + students[i].parentPhoneNumber.slice(6)%> "
+                                                <% } %>
+                                            >
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" value="<%=students[i].parentEmail%>">
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class='row mt-5'>
+                                        <div class='col-md-6'>
+                                            <p>Address</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Open</p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>Open</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input style="width:85%" type="text" value="<%=students[i].address%>">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" value="">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" value="">
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-start pt-5">
+                                        <div class="col-md-2">
+                                            <button type="submit" class="btn btn-dark">Update Student</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -17,7 +17,7 @@
 #--attributes student_id:integer,group_id:integer
 
 #sequelize model:generate --name events \
-  #--attributes title:string,location:string,description:string,startDate:date,endDate:date
+#--attributes title:string,location:string,description:string,startDate:date,endDate:date
 
 # sequelize model:generate --name studentGroup \
 # --attributes student_id:integer,group_id:integer

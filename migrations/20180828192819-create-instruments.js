@@ -16,31 +16,44 @@ module.exports = {
         },
       },
       instrument_type: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       instrument: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       brand: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       model_number: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       serial_number: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       year_purchased: {
-        type: Sequelize.INTEGER
+        allowNull: true,
+        type: Sequelize.STRING
       },
       condition: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       cost: {
-        type: Sequelize.INTEGER
+        allowNull: true,
+        type: Sequelize.STRING
       },
       current_est_value: {
-        type: Sequelize.INTEGER
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      name: {
+        allowNull: true,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
