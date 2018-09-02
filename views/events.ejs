@@ -80,6 +80,7 @@
 
     <% var eventNumberIndex = 0; %>
     <% var events = 0; %>
+    <% var x = false; %>
 
     <% for (let accordionIndex = 0; accordionIndex < accordionCount; accordionIndex++) { %>
 
@@ -99,6 +100,10 @@
         <% for (let eventIndex = 0; eventIndex < eventNumber[eventNumberIndex]; eventIndex++) { %>
         <!-- Card Body -->
         <div id="collapse<%= accordionIndex; %>" class="collapse show" aria-labelledby="heading<%= accordionIndex; %>" data-parent="#accordion">
+
+          <% if (x != false) { %>
+          <hr>
+          <% } %>
 
           <!-- Event Row -->
           <div class="card-body row" title="Description: <%= eventsArray[(events + (eventIndex + 1)) - 1].description; %>" style="background-color:#FFFFFF;color:#000000;text-decoration:none;" id="<%= eventsArray[(events + (eventIndex + 1)) - 1].id; %>">
@@ -132,11 +137,12 @@
           </div> <!-- End Card Body -->
 
         </div>  <!-- End Collapse --> 
-
+        <% x = true; %>
         <% } %>
 
           <% events += eventNumber[eventNumberIndex]; %>
           <% eventNumberIndex++; %>
+          <% x = false; %>
       
       </div>  <!-- End Card --> 
     </div> <!-- End Accordion --> 
