@@ -13,7 +13,6 @@
     border: none !important;
 }
 
-
 /* uniforms */
 
 .uniformInputBox{
@@ -40,4 +39,17 @@ button.orderBrand {
     cursor:pointer;
 }
 
+.label-space {
+    margin-top: 2em;
+}
 
+/* //media query  hide on small*/
+
+@media only screen and (max-width: 768px) {
+    #labels {
+        display: none;
+    }
+    label, .label-space {
+        margin-top: 1.5rem;
+    }
+}

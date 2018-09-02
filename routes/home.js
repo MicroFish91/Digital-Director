@@ -1,11 +1,15 @@
-let express = require('express');
-let router = express.Router();
-let db = require('../models');
+let express = require('express'),
+router      = express.Router(),
+db          = require('../models'),
+bodyParser  = require('body-parser');
 
-router.get('/home/?', (req, res) => {
+router.get('/home', (req, res) => {
+
+    console.log(req.user.id);
     let students = [];
     db.student.findAll({
-            attributes: ['firstName', 'lastName', 'phoneNumber', 'email', 'instrument', 'parentname1', 'parentname2', 'parentPhoneNumber', 'parentEmail', 'address']
+            attributes: ['id', 'firstName', 'lastName', 'phoneNumber', 'email', 'instrument', 'parentname1', 'parentname2', 'parentPhoneNumber', 'parentEmail', 'address'],
+            order:['lastName']
         })
         .then((results) => {
             for (let i = 0; i < results.length; i++) {
@@ -14,9 +18,12 @@ router.get('/home/?', (req, res) => {
         
         }).then(function (results) {
             res.render('home', {
-                students: students
+                students: students,
+                page: 'home'
             });
         });
+        // console.log('user object: ' + req.user.id);
+        // console.log(user);
 });
 
 module.exports = router;

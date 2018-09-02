@@ -17,14 +17,14 @@
 
     <%- include partials/header.ejs %>
 
-        <div class="container">
+        <div class="main container">
             <h1 class="display-4 text-center m-5">My Students</h1>
-            <div class='row text-center mb-3'>
+            <div class='row text-center mb-3' id='labels'>
                 <div class='col-md-3'>
                     <h4>Name</h4>
                 </div>
                 <div class='col-md-3'>
-                    <h4>Phone Number</h4>
+                    <h4>Phone</h4>
                 </div>
                 <div class='col-md-3'>
                     <h4>Email</h4>
@@ -44,9 +44,11 @@
                                         <%= students[i].firstName%>
                                             <%= students[i].lastName%>
                                     </div>
-                                    <div class='col-md-3 info'>
-                                        <%= '(' + students[i].phoneNumber.slice(0,3) + ') ' + students[i].phoneNumber.slice(3,6) + '-' + students[i].phoneNumber.slice(6)%>
-                                    </div>
+                                    <div class="col-md-3">
+                                            <% if (students[i].phoneNumber != null && students[i].phoneNumber != '') { %>
+                                                <%= '(' + students[i].phoneNumber.slice(0,3) + ') ' + students[i].phoneNumber.slice(3,6) + '-' + students[i].phoneNumber.slice(6)%>
+                                                <% } %>
+                                        </div>
                                     <div class='col-md-3 info'>
                                         <%= students[i].email%>
                                     </div>
@@ -58,104 +60,152 @@
                         </div>
                         <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading<%=i%>" data-parent="#student_rows">
                             <div class="card-body">
-                                <form action="">
+                                <form action="/updatestudent/<%=students[i].id%>" method="POST">
                                     <!-- row 1 -->
-                                    <div class='row'>
-                                        <div class='col-md-3'>
-                                            <p>Name</p>
-                                        </div>
-                                        <div class='col-md-3'>
-                                            <p>Phone Number</p>
-                                        </div>
-                                        <div class='col-md-3'>
-                                            <p>Email</p>
-                                        </div>
-                                        <div class='col-md-3'>
-                                            <p>Instrument</p>
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <input type="text" value="<%=students[i].firstName%> <%=students[i].lastName%>">
+                                            <label for="name">Name </label>
+                                            <input type="text" class='form-control' name="name" id='name' value="<%=students[i].firstName%> <%=students[i].lastName%>">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" value="<%= '(' + students[i].phoneNumber.slice(0,3) + ') ' + students[i].phoneNumber.slice(3,6) + '-' + students[i].phoneNumber.slice(6)%>">
+                                                <label for="phone">Phone number </label>                                            
+                                                <input name="phone" class='form-control' id='phone' type="text" 
+                                                <% if (students[i].phoneNumber != null && students[i].phoneNumber != '') { %>
+                                                    value=" <%= '(' + students[i].phoneNumber.slice(0,3) + ') ' + students[i].phoneNumber.slice(3,6) + '-' + students[i].phoneNumber.slice(6)%> "
+                                                    <% } %>
+                                                >
+                                            </div>
+                                        <div class="col-md-3">
+                                            <label for="email">Email</label>
+                                            <input type="text" name="email" class='form-control' id='email' value="<%=students[i].email%>">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" value="<%=students[i].email%>">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" value="<%=students[i].instrument%>">
+                                            <label for="instrument">Instument</label>
+                                            <input type="text" name="instrument" class='form-control' id='instrument' value="<%=students[i].instrument%>">
                                         </div>
                                     </div>
                                     <!-- row 2 -->
-                                    <div class='row mt-5'>
-                                        <div class='col-md-3'>
-                                            <p>Parent/Guardian 1</p>
-                                        </div>
-                                        <div class='col-md-3'>
-                                            <p>Parent/Guardian 2</p>
-                                        </div>
-                                        <div class='col-md-3'>
-                                            <p>Parent Phone</p>
-                                        </div>
-                                        <div class='col-md-3'>
-                                            <p>Parent Email</p>
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <input type="text" value="<%=students[i].parentname1%>">
+                                            <label class="label-space" for="parentname1">Parent/Guardian 1</label>
+                                            <input type="text" name="parentname1" class='form-control' id='parentname1' value="<%=students[i].parentname1%>">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" value="<%=students[i].phonename2%>">
+                                            <label class="label-space" for="parentname2">Parent/Guardian 2</label>
+                                            <input type="text" name="parentname2" class='form-control' id='parentname2' value="<%=students[i].parentname2%>">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" 
-                                            <% if (students[i].parentPhoneNumber != null) { %>
+                                            <label class="label-space" for="parentPhone">Parent number</label>
+                                            <input name="parentPhone" type="text" id='parentPhone' class='form-control'
+                                            <% if (students[i].parentPhoneNumber != null && students[i].parentPhoneNumber != '') { %>
                                                 value=" <%= '(' + students[i].parentPhoneNumber.slice(0,3) + ') ' + students[i].parentPhoneNumber.slice(3,6) + '-' + students[i].parentPhoneNumber.slice(6)%> "
                                                 <% } %>
                                             >
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" value="<%=students[i].parentEmail%>">
+                                            <label class="label-space" for="parentEmail">Parent Email</label>
+                                            <input type="text" name="parentEmail" class='form-control' id='parentEmail' value="<%=students[i].parentEmail%>">
                                         </div>
                                     </div>
                                     <!-- row -->
-                                    <div class='row mt-5'>
-                                        <div class='col-md-6'>
-                                            <p>Address</p>
-                                        </div>
-                                        <div class='col-md-3'>
-                                            <p>Open</p>
-                                        </div>
-                                        <div class='col-md-3'>
-                                            <p>Open</p>
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input style="width:85%" type="text" value="<%=students[i].address%>">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" value="">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" value="">
+                                            <label class="label-space" for="address">Address</label>
+                                            <input name="address" class='form-control' type="text" value="<%=students[i].address%>">
                                         </div>
                                     </div>
-                                    <div class="row justify-content-start pt-5">
-                                        <div class="col-md-2">
-                                            <button type="submit" class="btn btn-dark">Update Student</button>
+                                    <div class="row pt-5">
+                                        <div class="col-md-3">
+                                            <button type="submit" class="btn btn-block btn-dark">Update Student</button>
+                                        </div>
+                                    </form>
+                                        <div class="col-md-3">
+                                            <form action="/deletestudent/<%=students[i].id%>" method="POST">
+                                                <button type="submit" class="btn btn-block btn-danger">Delete Student</button>
+                                            </form>
                                         </div>
                                     </div>
-                                </form>
+                                <!-- </form> -->
                             </div>
                         </div>
                     </div>
                     <% } %>
-            </div>
-        </div>
+
+
+
+            <!-- Create a first student -->
+                        <div class='card'>
+                            <div class='card-header' id='heading'>
+                                <button class="btn btn-link container-fluid" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false"
+                                    aria-controls="collapse">
+                                    <div class="row">
+                                        <div class='col info'>
+                                            <i>Add New Student</i>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <div id="collapse" class="collapse" aria-labelledby="heading" data-parent="#student_rows">
+                                <div class="card-body">
+                                    <form action="/createstudent" method="POST">
+                                        <!-- row 1 -->
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label for="name">Name </label>                                                
+                                                <input type="text" class='form-control' name="name" id='name' value="">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="phone">Phone number </label>                                            
+                                                <input name="phone" class='form-control' id='phone' type="text">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="email">Email</label>                                                
+                                                <input type="text" name="email" class='form-control' id='email' value="">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="instrument">Instument</label>                                                
+                                                <input type="text" name="instrument" class='form-control' id='instrument' value="">
+                                            </div>
+                                        </div>
+                                        <!-- row 2 -->
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="label-space" for="parentname1">Parent/Guardian 1</label>                                                
+                                                <input type="text" name="parentname1" class='form-control' id='parentname1' value="">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="label-space" for="parentname2">Parent/Guardian 2</label>                                                
+                                                <input type="text" name="parentname2" class='form-control' id='parentname2' value="">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="label-space" for="parentPhone">Parent Phone number</label>                                                
+                                                <input name="parentPhone" type="text" id='parentPhone' class='form-control'>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="label-space" for="parentEmail">Parent Email</label>                                                
+                                                <input type="text" name="parentEmail" class='form-control' id='parentEmail' value="">
+                                            </div>
+                                        </div>
+                                        <!-- row -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="label-space" for="address">Address</label>                                                
+                                                <input name="address" class='form-control' type="text" value="">
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-start pt-5">
+                                            <div class="col-md-3">
+                                                <button type="submit" class="btn btn-block btn-dark">Add Student</button>
+                                            </div>
+                                        </form>
+                                        </div>
+                                    <!-- </form> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+          
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
