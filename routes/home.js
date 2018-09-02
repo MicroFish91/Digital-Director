@@ -5,10 +5,13 @@ bodyParser  = require('body-parser');
 
 router.get('/home', (req, res) => {
 
-    console.log(req.user.id);
     let students = [];
-    db.student.findAll({
+        db.student.findAll({
+            include: [{all: true}],
             attributes: ['id', 'firstName', 'lastName', 'phoneNumber', 'email', 'instrument', 'parentname1', 'parentname2', 'parentPhoneNumber', 'parentEmail', 'address'],
+            where: {
+                teacherId: req.user.id
+            },
             order:['lastName']
         })
         .then((results) => {
@@ -22,8 +25,6 @@ router.get('/home', (req, res) => {
                 page: 'home'
             });
         });
-        // console.log('user object: ' + req.user.id);
-        // console.log(user);
 });
 
 module.exports = router;
