@@ -20,7 +20,7 @@ router.post('/createInstrument', (req, res) => {
 
     }).then((studentId) => {
         db.instruments.create(
-            {student_id: studentId,
+            {studentId: studentId,
             instrument_type: req.body.instrumentType,
             instrument: req.body.instrument,
             brand: req.body.brand,
