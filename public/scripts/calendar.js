@@ -115,7 +115,7 @@ function timeConfig(timeFormat){
     }
 
     var timeOne = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), 0));
-    var timeTwo = new Date(Date.UTC(parseInt(timeFormat.slice(7, 11)), mm, parseInt(timeFormat.slice(4, 6)) + 1, parseInt(timeFormat.slice(12, 14)), parseInt(timeFormat.slice(15, 17)), 0));
+    var timeTwo = new Date(Date.UTC(parseInt(timeFormat.slice(7, 11)), mm, parseInt(timeFormat.slice(4, 6)), parseInt(timeFormat.slice(12, 14)), parseInt(timeFormat.slice(15, 17)), 0));
 
     // Time Difference
     var difference = (timeTwo - timeOne) / 1000;

@@ -60,8 +60,7 @@ router.post('/events', function(req, res){
     // Add parsed form information into events table of the database
     db.events.create({ teacherId: req.user.id, title: req.body.title, description: req.body.description, location: req.body.location, startDate: req.body.startDate, endDate: req.body.endDate})
     .then(function(results){
-        console.log(results);
-
+        
         res.redirect('/events');
 
     })
