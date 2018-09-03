@@ -18,22 +18,7 @@ var express         = require('express'),
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(cookieParser());
-
-    app.use(require('./routes/uniforms'));
-    app.use(require('./routes/home'));
-    app.use(require('./routes/events'));
-    app.use(require('./routes/instruments'));
-    app.use(require('./routes/instrumentUpdate'));
-    app.use(require('./routes/createInstrument'));
-    app.use(require('./routes/deleteInstrument')); 
-    app.use(require('./routes/uniformUpdate')); 
-    app.use(require('./routes/deleteUniform'));
-    app.use(require('./routes/createUniform'));
-    app.use(require('./routes/deleteevent'));
-    app.use(require('./routes/updatestudent'));
-    app.use(require('./routes/deletestudent')); 
-    app.use(require('./routes/createstudent'));    
+    app.use(cookieParser()); 
 
 var strategy = new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
@@ -151,13 +136,19 @@ function ensureAuthenticated(req, res, next) {
 app.use(ensureAuthenticated);
 
 app.use(require('./routes/uniforms'));
-// app.use(require('./routes/layout'));
 app.use(require('./routes/home'));
 app.use(require('./routes/events'));
+app.use(require('./routes/instruments'));
+app.use(require('./routes/instrumentUpdate'));
+app.use(require('./routes/createInstrument'));
+app.use(require('./routes/deleteInstrument')); 
+app.use(require('./routes/uniformUpdate')); 
+app.use(require('./routes/deleteUniform'));
+app.use(require('./routes/createUniform'));
+app.use(require('./routes/deleteevent'));
 app.use(require('./routes/updatestudent'));
 app.use(require('./routes/deletestudent')); 
 app.use(require('./routes/createstudent'));   
-// app.use(require('./routes/testlogin')); 
 
 app.get('/layout', ensureAuthenticated, function (req, res) {
   // console.log(db.teacher.findOne({where: {uniqueAuth: req.user.id}})) 
@@ -184,14 +175,14 @@ app.use(function(req, res, next) {
 });
  
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// app.use(function(err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
  
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 
 server.listen(3000);
