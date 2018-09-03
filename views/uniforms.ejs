@@ -17,26 +17,128 @@
     <div class="container">
         <h1 class="display-4 text-center m-5">Uniforms</h1>
         <div class='row text-center mb-3'>
-            <div class='col-md-3 offset-2'>
+            <div class='col-md-3 offset-md-2'>
                 <h4>
                     <button class='orderType'>Type</button>
                 </h4>
             </div>
-            <div class='col-md-3 offset-1'>
+            <div class='col-md-3 offset-md-1'>
                 <h4>Student</h4>
             </div>
         </div>
         <div class='accordian' id="student_rows">
-            <div class='card'>
+            
+            <% for (let i = 0; i < uniformInfoArray.length; i++) { %>
+                <div class='card'>
+                    <div class='card-header' id='heading<%=i%>'>
+                        <button class="btn btn-link container-fluid" type="button" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="false"
+                            aria-controls="collapse<%=i%>">
+                            <div class="row">
+                                <div class='col-md-3 info offset-md-2'>
+                                    <%= uniformInfoArray[i].type%>
+                                </div>
+                                <div class='col-md-3 info offset-md-1'>
+                                        <%= uniformInfoArray[i].name%>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                    <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading<%=i%>" data-parent="#student_rows">
+                        <div class="card-body">
+                            <form action='/uniformUpdate/<%=uniformInfoArray[i].id%>' method='POST'>
+                                <!-- row 1 -->
+                                <div class="row">
+                                    <div class="col-md-3 offset-md-2">
+                                        <label for="uniformType">Type</label> 
+                                        <select class="form-control" name='uniformType' id='instrumentBar'>
+                                            <% uniformTypeArray.forEach(function(e){ %>
+                                                <% if (uniformInfoArray[i].type === e){ %>
+                                                    <option selected value='<%= e %>'><%= e %></option>
+                                                <% } else { %>
+                                                    <option><%= e %></option>
+                                                <% } %>
+                                            <% }) %>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 offset-md-1">
+                                        <label for="studentName">Student</label> 
+                                        <select class="form-control" id='studentSelect' name='studentName'>
+                                            <% studentListArray.forEach(function(e){ %>
+                                                <% if(uniformInfoArray[i].name === (`${e.firstName} ${e.lastName}`)){ %>
+                                                <option selected value='<%= uniformInfoArray[i].name %>'><%= e.firstName %>  <%= e.lastName %></option>
+                                                <% } else { %>
+                                                    <option><%= e.firstName %>  <%= e.lastName %></option>
+                                                <% } %>
+                                            <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- row 2 -->
+                                <div class="row offset-md-2 label-space">
+                                    <div class="col-md-3">
+                                        <label for="pantSize">Pant Size</label> 
+                                        <select class="form-control"  name='pantSize'>
+                                            <% pantSizeArray.forEach(function(e){ %>
+                                                <% if(uniformInfoArray[i].pant_size === e){ %>
+                                                    <option selected value='<%= e %>'> <%= e %> </option>
+                                                <% } else { %>
+                                                    <option> <%= e %> </option>
+                                                <% } %>
+                                            <% }) %>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="jacketSize">Jacket Size</label> 
+                                        <select class="form-control"  name='jacketSize'>
+                                            <% jacketSizeArray.forEach(function(e){ %>
+                                                <% if(uniformInfoArray[i].jacket_size === e){ %>
+                                                    <option selected value='<%= e %>'> <%= e %> </option>
+                                                <% } else { %>
+                                                    <option> <%= e %> </option>
+                                                <% } %>
+                                            <% }) %>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="dressSize">Dress Size</label> 
+                                        <select class="form-control"  name='dressSize'>
+                                            <% dressSizeArray.forEach(function(e){ %>
+                                                <% if(uniformInfoArray[i].dress_size === e){ %>
+                                                    <option selected value='<%= e %>'> <%= e %> </option>
+                                                <% } else { %>
+                                                    <option> <%= e %> </option>
+                                                <% } %>
+                                            <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- row -->
+                                <div class="row pt-5">
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn-block btn-dark">Update Uniform</button>
+                                    </div>
+                                    
+                                </form>
+                                    <div class="col-md-3">
+                                        <form action="/deleteUniform/<%=uniformInfoArray[i].id%>" method="POST">
+                                            <button type="submit" class="btn btn-block btn-danger">Delete Uniform</button>
+                                        </form>
+                                    </div>
+                            </div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+                <% } %>
+
+                <!-- create uniform -->
+                <div class='card'>
                     <div class='card-header' id='heading'>
                         <button class="btn btn-link container-fluid" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false"
                             aria-controls="collapse">
                             <div class="row">
-                                <div class='col-md-3 info offset-2'>
-                                        <strong>Add Uniform</strong>
-                                </div>
-                                <div class='col-md-3 info offset-1'>
-                                        
+                                <div class='col info'>
+                                        <i>Add Uniform</i>
                                 </div>
                             </div>
                         </button>
@@ -45,23 +147,17 @@
                         <div class="card-body">
                             <form action='/createUniform' method='POST'>
                                 <!-- row 1 -->
-                                <div class='row'>
-                                    <div class='col-md-3 offset-2'>
-                                        <p>Type</p>
-                                    </div>
-                                    <div class='col-md-3 offset-1'>
-                                        <p>Student</p>
-                                    </div>
-                                </div>
                                 <div class="row">
-                                    <div class="col-md-3 offset-2">
+                                    <div class="col-md-3 offset-md-2">
+                                        <label for="uniformType">Type</label> 
                                         <select class="form-control" name='uniformType' id='instrumentBar'>
                                             <% uniformTypeArray.forEach(function(e){ %>
                                                 <option><%= e %></option>
                                             <% }) %>
                                         </select>
                                     </div>
-                                    <div class="col-md-3 offset-1">
+                                    <div class="col-md-3 offset-md-1">
+                                        <label for="studentName">Student</label> 
                                         <select class="form-control" id='studentSelect' name='studentName'>
                                             <% studentListArray.forEach(function(e){ %>
                                                 <option><%= e.firstName %>  <%= e.lastName %></option>
@@ -70,19 +166,9 @@
                                     </div>
                                 </div>
                                 <!-- row 2 -->
-                                <div class='row offset-2 mt-5'>
-                                    <div class='col-md-3'>
-                                        <p>Pant Size</p>
-                                    </div>
-                                    <div class='col-md-3'>
-                                        <p>Jacket Size</p>
-                                    </div>
-                                    <div class='col-md-3'>
-                                        <p>Dress Size</p>
-                                    </div>
-                                </div>
-                                <div class="row offset-2">
+                                <div class="row offset-md-2 label-space">
                                     <div class="col-md-3">
+                                        <label for="pantSize">Pant Size</label> 
                                         <select class="form-control"  name='pantSize'>
                                             <% pantSizeArray.forEach(function(e){ %>
                                                 <option> <%= e %> </option>
@@ -90,6 +176,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
+                                        <label for="jacketSize">Jacket Size</label> 
                                         <select class="form-control"  name='jacketSize'>
                                             <% jacketSizeArray.forEach(function(e){ %>
                                                 <option> <%= e %> </option>
@@ -97,6 +184,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
+                                        <label for="dressSize">Dress Size</label> 
                                         <select class="form-control"  name='dressSize'>
                                             <% dressSizeArray.forEach(function(e){ %>
                                                 <option> <%= e %> </option>
@@ -115,122 +203,7 @@
                         </div>
                     </div>
                 </div>
-            <% for (let i = 0; i < uniformInfoArray.length; i++) { %>
-                <div class='card'>
-                    <div class='card-header' id='heading<%=i%>'>
-                        <button class="btn btn-link container-fluid" type="button" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="false"
-                            aria-controls="collapse<%=i%>">
-                            <div class="row">
-                                <div class='col-md-3 info offset-2'>
-                                    <%= uniformInfoArray[i].type%>
-                                </div>
-                                <div class='col-md-3 info offset-1'>
-                                        <%= uniformInfoArray[i].name%>
-                                </div>
-                            </div>
-                        </button>
-                    </div>
-                    <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading<%=i%>" data-parent="#student_rows">
-                        <div class="card-body">
-                            <form action='/uniformUpdate/<%=uniformInfoArray[i].id%>' method='POST'>
-                                <!-- row 1 -->
-                                <div class='row'>
-                                    <div class='col-md-3 offset-2'>
-                                        <p>Type</p>
-                                    </div>
-                                    <div class='col-md-3 offset-1'>
-                                        <p>Student</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3 offset-2">
-                                        <select class="form-control" name='uniformType' id='instrumentBar'>
-                                            <% uniformTypeArray.forEach(function(e){ %>
-                                                <% if (uniformInfoArray[i].type === e){ %>
-                                                    <option selected value='<%= e %>'><%= e %></option>
-                                                <% } else { %>
-                                                    <option><%= e %></option>
-                                                <% } %>
-                                            <% }) %>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3 offset-1">
-                                        <select class="form-control" id='studentSelect' name='studentName'>
-                                            <% studentListArray.forEach(function(e){ %>
-                                                <% if(uniformInfoArray[i].name === (`${e.firstName} ${e.lastName}`)){ %>
-                                                <option selected value='<%= uniformInfoArray[i].name %>'><%= e.firstName %>  <%= e.lastName %></option>
-                                                <% } else { %>
-                                                    <option><%= e.firstName %>  <%= e.lastName %></option>
-                                                <% } %>
-                                            <% }) %>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!-- row 2 -->
-                                <div class='row offset-2 mt-5'>
-                                    <div class='col-md-3'>
-                                        <p>Pant Size</p>
-                                    </div>
-                                    <div class='col-md-3'>
-                                        <p>Jacket Size</p>
-                                    </div>
-                                    <div class='col-md-3'>
-                                        <p>Dress Size</p>
-                                    </div>
-                                </div>
-                                <div class="row offset-2">
-                                    <div class="col-md-3">
-                                        <select class="form-control"  name='pantSize'>
-                                            <% pantSizeArray.forEach(function(e){ %>
-                                                <% if(uniformInfoArray[i].pant_size === e){ %>
-                                                    <option selected value='<%= e %>'> <%= e %> </option>
-                                                <% } else { %>
-                                                    <option> <%= e %> </option>
-                                                <% } %>
-                                            <% }) %>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <select class="form-control"  name='jacketSize'>
-                                            <% jacketSizeArray.forEach(function(e){ %>
-                                                <% if(uniformInfoArray[i].jacket_size === e){ %>
-                                                    <option selected value='<%= e %>'> <%= e %> </option>
-                                                <% } else { %>
-                                                    <option> <%= e %> </option>
-                                                <% } %>
-                                            <% }) %>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <select class="form-control"  name='dressSize'>
-                                            <% dressSizeArray.forEach(function(e){ %>
-                                                <% if(uniformInfoArray[i].dress_size === e){ %>
-                                                    <option selected value='<%= e %>'> <%= e %> </option>
-                                                <% } else { %>
-                                                    <option> <%= e %> </option>
-                                                <% } %>
-                                            <% }) %>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!-- row -->
-                                <div class="row justify-content-start pt-5">
-                                    <div class="col-md-2">
-                                        <button id='uniformButton' type="submit" class="btn btn-dark">Update Uniform</button>
-                                    </div>
-                            </form>
-                                <div class="col-md-2">
-                                    <form action="/deleteUniform/<%=uniformInfoArray[i].id%>" method="POST">
-                                        <button type="submit" class="btn btn-danger">Delete Uniform</button>
-                                    </form>
-                                </div>
-                            </div>
-                        <!-- </div> -->
-                    </div>
-                </div>
-            </div>
-                <% } %>
-        </div>
+    
 
   
 
