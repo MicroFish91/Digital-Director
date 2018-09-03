@@ -8,7 +8,11 @@ router.use(bodyParser.urlencoded({extended: false}));
 
 router.post('/instrumentUpdate/:instrumentId', (req, res) => {
 
-    db.student.findAll().then((results) => {
+    db.student.findAll({
+        where: {
+            teacherId: req.user.id
+        }
+    }).then((results) => {
         let studentId = 0;
         results.forEach(function(e){
             if(req.body.studentName1 === `${e.firstName} ${e.lastName}`){

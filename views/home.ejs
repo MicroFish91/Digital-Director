@@ -82,7 +82,7 @@
                                             <input type="text" name="email" class='form-control' id='email' value="<%=students[i].email%>">
                                         </div>
                                         <div class="col-md-3">
-                                            <label for="instrument">Instument</label>
+                                            <label for="instrument">Instrument</label>
                                             <input type="text" name="instrument" class='form-control' id='instrument' value="<%=students[i].instrument%>">
                                         </div>
                                     </div>
@@ -117,15 +117,18 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label class="label-space" for="checkedOut">Equipment checked out:</label>
-                                            <!-- <input name="checkedOut" class='form-control' type="text" readonly -->
+                                            <ul>                                            
                                                 <% if (students[i].uniforms.length > 0) { %> 
-                                                    <ul>
                                                         <% for(let j = 0; j < students[i].uniforms.length; j++) { %>
                                                         <li><%=students[i].uniforms[j].type%></li>
                                                         <% } %>
-                                                    </ul>
                                                 <% } %>
-                                                <!-- </input> -->
+                                                <% if (students[i].instruments.length > 0) { %> 
+                                                    <% for(let j = 0; j < students[i].instruments.length; j++) { %>
+                                                    <li><%=students[i].instruments[j].instrument%></li>
+                                                    <% } %>
+                                            <% } %>
+                                            </ul>
                                         </div>
                                     </div>
                                     <div class="row pt-5">
@@ -177,7 +180,7 @@
                                                 <input type="text" name="email" class='form-control' id='email' value="">
                                             </div>
                                             <div class="col-md-3">
-                                                <label for="instrument">Instument</label>                                                
+                                                <label for="instrument">Instrument</label>                                                
                                                 <input type="text" name="instrument" class='form-control' id='instrument' value="">
                                             </div>
                                         </div>
@@ -192,7 +195,7 @@
                                                 <input type="text" name="parentname2" class='form-control' id='parentname2' value="">
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="label-space" for="parentPhone">Parent Phone number</label>                                                
+                                                <label class="label-space" for="parentPhone">Parent Number</label>                                                
                                                 <input name="parentPhone" type="text" id='parentPhone' class='form-control'>
                                             </div>
                                             <div class="col-md-3">
