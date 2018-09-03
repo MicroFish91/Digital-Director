@@ -28,8 +28,6 @@ router.get('/events', function(req, res){
         var accordionNumber = accordionNames.length;
         var eventNumber = eventsPerAccordion(result, accordionNames);
 
-        console.log(eventNumber);
-
         res.render('events', {
             eventsArray: result,
             accordionCount: accordionNumber,
