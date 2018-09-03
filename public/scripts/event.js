@@ -1,5 +1,19 @@
 $(function(){
 
+    // Calendar View Event Listener
+    $("#calendarView").click(function(event){
+        
+        event.preventDefault();
+
+        // Holds list of current events to pass to calendar
+        let jsonArray = compileJSON();
+
+        localStorage.setItem("calendarObjs", JSON.stringify(jsonArray));
+
+        document.location.href = "../calendar";
+
+    });
+
     // Add Click Event to Add Event Button
     $("#addEvent").click(function(event){
 
@@ -86,5 +100,33 @@ function compareToday(yearOne, monthOne, dayOne, hourOne, minuteOne){
     } else {
         return false;
     }
+
+}
+
+// Compile JSON to include in header for parsing under calendar view
+function compileJSON(){
+
+    var $title = $('.eventTitle');
+    var $location = $('.eventLocation');
+    var $description = $('.eventDescription');
+    var $start = $('.eventStart');
+    var $end = $('.eventEnd');
+
+    var objectArray = [];
+
+    for (let i = 0; i < $title.length; i++){
+
+        var placeholder = {};
+        placeholder.title = $title[i].innerText.slice(7, 1000);
+        placeholder.location = $location[i].innerText.slice(10, 1000);
+        placeholder.description = $description[i].title.slice(13, 1000);
+        placeholder.startDate = $start[i].innerText.slice(15, 1000);
+        placeholder.endDate = $end[i].innerText.slice(14, 1000);
+
+        objectArray.push(placeholder);
+
+    }
+
+    return objectArray;
 
 }
