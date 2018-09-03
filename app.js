@@ -152,21 +152,9 @@ app.use(require('./routes/deletestudent'));
 app.use(require('./routes/createstudent')); 
 
 app.get('/layout', ensureAuthenticated, function (req, res) {
-  // console.log(db.teacher.findOne({where: {uniqueAuth: req.user.id}})) 
-  
-  // console.log('user object: ' + req.user.id);
-  // db.teacher.findOne({where: {uniqueAuth: req.user.id}})
-  //   .then(teacher => {
-  //     if (teacher == null) {
-        // db.teacher.create({uniqueAuth: req.user.id, name: req.user.displayName, email: req.user.email});        
-    //   }
-    // })
-  
-  // .then(function (results) {
     res.render('layout', {
       user: req.user
     });
-  // })
 });
 
 app.use(function(req, res, next) {

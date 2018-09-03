@@ -48,6 +48,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      teacherId: {
+        type: Sequelize.STRING,
+        allowNull: false   
       }
     });
   },

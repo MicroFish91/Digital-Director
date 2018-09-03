@@ -32,7 +32,10 @@ router.get('/instruments', (req, res) => {
     var studentListArray = [];
 
     db.student.findAll({
-        attributes: ['id','firstName', 'lastName']
+        attributes: ['id','firstName', 'lastName'],
+        where: {
+            teacherId: req.user.id
+        }
     })
     .then((results) => {
         for (let i = 0; i < results.length; i++) {
@@ -41,9 +44,11 @@ router.get('/instruments', (req, res) => {
     }).then()
     
     db.instruments.findAll({
-            attributes: ['id','student_id','instrument_type', 'instrument', 'brand', 'model_number', 'serial_number', 'year_purchased', 'condition', 'cost', 'current_est_value', 'name'],
-            order:['instrument']
-
+            attributes: ['id','studentd','instrument_type', 'instrument', 'brand', 'model_number', 'serial_number', 'year_purchased', 'condition', 'cost', 'current_est_value', 'name'],
+            order:['instrument'],
+            where: {
+                teacherId: req.user.id
+            }
         })
         .then((results) => {
             

@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     meetingRoom: DataTypes.STRING,
     meetingDates: DataTypes.STRING,
     meetingTime: DataTypes.STRING,
-    description: DataTypes.STRING
+    description: DataTypes.STRING,
+    teacherId: DataTypes.STRING    
   }, {});
   group.associate = function(models) {
     // associations can be defined here

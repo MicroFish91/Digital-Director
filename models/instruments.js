@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     condition: DataTypes.STRING,
     cost: DataTypes.STRING,
     current_est_value: DataTypes.STRING,
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    teacherId: DataTypes.STRING    
   }, {});
   instruments.associate = function(models) {
     instruments.belongsTo(models.student);
