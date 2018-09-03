@@ -29,12 +29,9 @@ router.get('/uniforms', (req, res) => {
         }
     }).then()
         db.uniforms.findAll({
-<<<<<<< HEAD
-=======
         where: {
             teacherId: req.user.id
         },
->>>>>>> 43415bb8094d1b8b1d8a8f07d8ac71d8fbb8411c
         attributes: ['id','studentId','type', 'pant_size', 'jacket_size', 'dress_size', 'name'],
         order:['type']
     })
@@ -60,26 +57,6 @@ router.get('/uniforms', (req, res) => {
     })
 })
 
-<<<<<<< HEAD
-// router.post('/uniforms', (req, res) => {
-
-//     db.student.findAll().then((results) => {
-//         let studentId = 0;
-//         results.forEach(function(e){
-//             if(req.body.studentName === `${e.firstName} ${e.lastName}`){
-//                 // console.log(e.id);
-//                 studentId = e.id;
-//             }
-//         })
-//         return(studentId);
-//     }).then((studentId) => {
-//         db.uniforms.create({student_id: studentId, type:req.body.uniformType, pant_size:req.body.pantSize, jacket_size:req.body.jacketSize, dress_size:req.body.dressSize});
-//     })
-//     .then(()=> {
-//         res.redirect('/uniforms');
-//     })
-// });
-=======
 router.post('/uniforms', (req, res) => {
 
     db.student.findAll({
@@ -102,7 +79,6 @@ router.post('/uniforms', (req, res) => {
         res.redirect('/uniforms');
     })
 });
->>>>>>> 43415bb8094d1b8b1d8a8f07d8ac71d8fbb8411c
 
 
 module.exports = router;
