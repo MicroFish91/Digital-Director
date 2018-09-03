@@ -19,9 +19,9 @@ router.get('/events', function(req, res){
     db.events.findAll({
         where: {
             teacherId: req.user.id,
-            startDate: { gte: Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(), 00, 00) },
+            endDate: { gte: Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(), 00, 00) },
         },
-        order: [['startDate', 'ASC']]
+        order: [['endDate', 'ASC']]
     })
     .then(function(result){
 
