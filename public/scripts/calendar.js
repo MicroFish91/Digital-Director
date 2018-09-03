@@ -123,39 +123,6 @@ function timeConfig(timeFormat){
     var newDate = p.DateTime.today();
     newDate = p.DateTime.addSeconds(newDate, difference);
 
-    // var newDate = p.DateTime.fromDateParts(timeFormat.slice(7, 11), mm, timeFormat.slice(4, 6), timeFormat.slice(12, 14), timeFormat.slice(15, 17), 0);
-
     return newDate;
-
-    // // Month "Aug"
-    // console.log(timeFormat.slice(0, 3));
-
-    // // Day
-    // console.log(timeFormat.slice(4, 6));
-
-    // // Year
-    // console.log(timeFormat.slice(7, 11));
-
-    // 
-
-    return newDate;
-
-    // // Month "Aug"
-    // console.log(timeFormat.slice(0, 3));
-
-    // // Day
-    // console.log(timeFormat.slice(4, 6));
-
-    // // Year
-    // console.log(timeFormat.slice(7, 11));
-
-    // // Hour
-    // console.log(timeFormat.slice(12, 14));
-
-    // // Minutes
-    // console.log(timeFormat.slice(15, 17));
-
-    // // Seconds
-    // console.log(timeFormat.slice(18, 20));
 
 }
