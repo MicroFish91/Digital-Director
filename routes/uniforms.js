@@ -18,7 +18,10 @@ router.get('/uniforms', (req, res) => {
     var uniformInfoArray = [];
 
     db.student.findAll({
-    attributes: ['id','firstName', 'lastName']
+    attributes: ['id','firstName', 'lastName'],
+    where: {
+        teacherId: req.user.id
+    }
     })
     .then((results) => {
         for (let i = 0; i < results.length; i++) {
@@ -26,7 +29,10 @@ router.get('/uniforms', (req, res) => {
         }
     }).then()
         db.uniforms.findAll({
-        attributes: ['id','student_id','type', 'pant_size', 'jacket_size', 'dress_size', 'name'],
+        where: {
+            teacherId: req.user.id
+        },
+        attributes: ['id','studentId','type', 'pant_size', 'jacket_size', 'dress_size', 'name'],
         order:['type']
     })
     .then((results) => {
@@ -53,7 +59,11 @@ router.get('/uniforms', (req, res) => {
 
 router.post('/uniforms', (req, res) => {
 
-    db.student.findAll().then((results) => {
+    db.student.findAll({
+        where: {
+        teacherId: req.user.id
+    }
+    }).then((results) => {
         let studentId = 0;
         results.forEach(function(e){
             if(req.body.studentName === `${e.firstName} ${e.lastName}`){
@@ -63,7 +73,7 @@ router.post('/uniforms', (req, res) => {
         })
         return(studentId);
     }).then((studentId) => {
-        db.uniforms.create({student_id: studentId, type:req.body.uniformType, pant_size:req.body.pantSize, jacket_size:req.body.jacketSize, dress_size:req.body.dressSize});
+        db.uniforms.create({studentId: studentId, type:req.body.uniformType, pant_size:req.body.pantSize, jacket_size:req.body.jacketSize, dress_size:req.body.dressSize});
     })
     .then(()=> {
         res.redirect('/uniforms');
