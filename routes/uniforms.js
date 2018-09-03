@@ -44,7 +44,8 @@ router.get('/uniforms', (req, res) => {
             uniformInfoArray: uniformInfoArray,
             pantSizeArray: pantSizeArray,
             jacketSizeArray: jacketSizeArray,
-            dressSizeArray: dressSizeArray
+            dressSizeArray: dressSizeArray,
+            page: "uniforms"
 
         })
     })
