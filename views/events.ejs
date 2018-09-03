@@ -8,8 +8,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link rel="stylesheet" href="./styles/events.css">
-    <link rel="stylesheet" href="./datetimepicker/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="/styles/events.css">
+    <link rel="stylesheet" href="/datetimepicker/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
 
@@ -111,30 +112,42 @@
           <div class="card-body row eventDescription" title="Description: <%= eventsArray[(events + (eventIndex + 1)) - 1].description; %>" style="background-color:#FFFFFF;color:#000000;text-decoration:none;" id="<%= eventsArray[(events + (eventIndex + 1)) - 1].id; %>">
             
             <!-- Monthly Event Title -->
-            <div class="col eventTitle">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-12 eventTitle" style="text-align: center">
               <u>Title</u> <br> <%= eventsArray[(events + (eventIndex + 1)) - 1].title; %>
             </div>
 
-            <div class="col eventLocation">
+            <br>  
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 eventLocation" style="text-align: center">
               <u>Location</u> <br> <%= eventsArray[(events + (eventIndex + 1)) - 1].location; %>
             </div>
 
-            <div class="col eventStart">
+            <br>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 eventStart" style="text-align: center">
               <u>Start Time</u> <br> <%= eventsArray[(events + (eventIndex + 1)) - 1].startDate.toString().slice(0, 24); %>
             </div>
 
-            <div class="col eventEnd">
+            <br>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 eventEnd" style="text-align: center">
               <u>End Time</u> <br> <%= eventsArray[(events + (eventIndex + 1)) - 1].endDate.toString().slice(0, 24); %>
             </div>  
 
+            <br>
+
             <!-- Trash Button -->
-            <div class="icon-trash col-0.5 trashIt" id="t<%= eventsArray[(events + (eventIndex + 1)) - 1].id; %>">
+            <!-- <div class="icon-trash col-0.5 col-md-1 col-sm-1.5 trashIt" id="t<%= eventsArray[(events + (eventIndex + 1)) - 1].id; %>">
               <div class="trash-lid" style="background-color: #D37ABC"></div>
               <div class="trash-container" style="background-color: #D37ABC"></div>
               <div class="trash-line-1"></div>
               <div class="trash-line-2"></div>
               <div class="trash-line-3"></div>
-            </div>
+            </div> -->
+
+            <!-- <button style="font-size:24px" id="t<%= eventsArray[(events + (eventIndex + 1)) - 1].id; %>" class="fa fa-trash-o trashIt col-0.5 col-sm-2"></button> -->
+
+            <button style="font-size:24px; max-height: 50px; max-width: 65px; text-align: center" id="t<%= eventsArray[(events + (eventIndex + 1)) - 1].id; %>" class="btn btn-primary center-block fa fa-trash-o trashIt col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-auto" id="addEvent"></button>
 
           </div> <!-- End Card Body -->
 
@@ -164,6 +177,6 @@
         $('#datetimepicker1').datetimepicker();
       });
     </script>
-    <script src="./scripts/event.js"></script>
+    <script src="/scripts/event.js"></script>
   </body>
 </html>
