@@ -3,7 +3,7 @@ let express = require('express'),
     db = require('../models'),
     bodyParser = require('body-parser');
 
-router.get('/home', (req, res) => {    
+router.get('/home', (req, res) => {
     let students = [];
     db.student.findAll({
             include: [{all: true}],

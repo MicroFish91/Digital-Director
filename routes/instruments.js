@@ -44,7 +44,7 @@ router.get('/instruments', (req, res) => {
     }).then()
     
     db.instruments.findAll({
-            attributes: ['id','studentd','instrument_type', 'instrument', 'brand', 'model_number', 'serial_number', 'year_purchased', 'condition', 'cost', 'current_est_value', 'name'],
+            attributes: ['id','studentId','instrument_type', 'instrument', 'brand', 'model_number', 'serial_number', 'year_purchased', 'condition', 'cost', 'current_est_value', 'name'],
             order:['instrument'],
             where: {
                 teacherId: req.user.id
