@@ -7,7 +7,11 @@ router.use(bodyParser.urlencoded({extended: false}));
 
 router.post('/createInstrument', (req, res) => {
 
-    db.student.findAll().then((results) => {
+    db.student.findAll({
+        where: {
+            teacherId: req.user.id
+        }
+    }).then((results) => {
         let studentId = 0;
         results.forEach(function(e){
             if(req.body.studentName1 === `${e.firstName} ${e.lastName}`){
@@ -18,9 +22,9 @@ router.post('/createInstrument', (req, res) => {
         console.log(studentId);
         return(studentId);
 
-    }).then((studentId) => {
+    }).then((student_Id) => {
         db.instruments.create(
-            {studentId: studentId,
+            {studentId: student_Id,
             instrument_type: req.body.instrumentType,
             instrument: req.body.instrument,
             brand: req.body.brand,
@@ -30,7 +34,8 @@ router.post('/createInstrument', (req, res) => {
             condition: req.body.condition,
             cost: req.body.cost,
             current_est_value: req.body.currentEstValue,
-            name: req.body.studentName1
+            name: req.body.studentName1,
+            teacherId: req.user.id
             },
             {where: {id: req.params.instrumentId}}
         )

@@ -106,3 +106,12 @@ h1, h2{
   .collapse.in {
     height: auto !important;
 }
+
+@media only screen and (max-width: 768px) {
+  
+  button.trashIt {
+    max-width: 150px !important;
+    margin: auto;
+  }
+
+}

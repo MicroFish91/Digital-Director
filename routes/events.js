@@ -18,6 +18,7 @@ router.get('/events', function(req, res){
     // Pulls an array of Event objects sorted from least to greatest, starting from the day of query
     db.events.findAll({
         where: {
+            teacherId: req.user.id,
             startDate: { gte: Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(), 00, 00) },
         },
         order: [['startDate', 'ASC']]
@@ -57,10 +58,9 @@ router.get('/events', function(req, res){
 router.post('/events', function(req, res){
 
     // Add parsed form information into events table of the database
-    db.events.create({title: req.body.title, description: req.body.description, location: req.body.location, startDate: req.body.startDate, endDate: req.body.endDate})
+    db.events.create({ teacherId: req.user.id, title: req.body.title, description: req.body.description, location: req.body.location, startDate: req.body.startDate, endDate: req.body.endDate})
     .then(function(results){
-        console.log(results);
-
+        
         res.redirect('/events');
 
     })

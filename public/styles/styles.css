@@ -13,6 +13,25 @@
     border: none !important;
 }
 
+<<<<<<< HEAD
+=======
+.list-group-item {
+    background-color: inherit;
+    /* border: none;    */
+}
+
+/* uniforms */
+
+.uniformInputBox{
+    margin-top: 8%;
+}
+
+#colorBox{
+    height: 100vh;
+    background-color: aqua;
+}
+
+>>>>>>> 43415bb8094d1b8b1d8a8f07d8ac71d8fbb8411c
 /* instruments */
 
 button.orderType { 

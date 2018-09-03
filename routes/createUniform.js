@@ -18,14 +18,19 @@ router.post('/createUniform', (req, res) => {
         console.log(studentId);
         return(studentId);
 
-    }).then((studentId) => {
+    }).then((student_Id) => {
         db.uniforms.create(
+<<<<<<< HEAD
             {studentId: studentId,
+=======
+            {studentId: student_Id,
+>>>>>>> 43415bb8094d1b8b1d8a8f07d8ac71d8fbb8411c
             type: req.body.uniformType,
             pant_size: req.body.pantSize,
             jacket_size: req.body.jacketSize,
             dress_size: req.body.dressSize,
             name: req.body.studentName,
+            teacherId: req.user.id
             },
             {where: {id: req.params.uniformId}}
         )
