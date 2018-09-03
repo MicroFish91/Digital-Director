@@ -4,8 +4,6 @@ db          = require('../models'),
 bodyParser  = require('body-parser');
 
 router.get('/home', (req, res) => {
-
-    console.log(req.user.id);
     let students = [];
     db.student.findAll({
             attributes: ['id', 'firstName', 'lastName', 'phoneNumber', 'email', 'instrument', 'parentname1', 'parentname2', 'parentPhoneNumber', 'parentEmail', 'address'],
