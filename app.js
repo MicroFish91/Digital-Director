@@ -152,12 +152,21 @@ app.use(require('./routes/deletestudent'));
 app.use(require('./routes/createstudent')); 
 
 app.get('/layout', ensureAuthenticated, function (req, res) {
+  // console.log(db.teacher.findOne({where: {uniqueAuth: req.user.id}})) 
   
-  console.log('user object: ' + req.user.id);
-  // db.teacher.create({id: req.user.id, name: req.user.displayName, email: req.user.email});
-  res.render('layout', {
-    user: req.user
-  });
+  // console.log('user object: ' + req.user.id);
+  // db.teacher.findOne({where: {uniqueAuth: req.user.id}})
+  //   .then(teacher => {
+  //     if (teacher == null) {
+        // db.teacher.create({uniqueAuth: req.user.id, name: req.user.displayName, email: req.user.email});        
+    //   }
+    // })
+  
+  // .then(function (results) {
+    res.render('layout', {
+      user: req.user
+    });
+  // })
 });
 
 app.use(function(req, res, next) {
@@ -167,14 +176,14 @@ app.use(function(req, res, next) {
 });
  
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// app.use(function(err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
  
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 
 server.listen(3000);

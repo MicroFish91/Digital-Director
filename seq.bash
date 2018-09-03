@@ -33,4 +33,5 @@
 # sequelize model:generate --name teacher \
 # --attributes displayName:string,email:string
 
-sequelize migration:create --name studentsAddTeachers
+# sequelize migration:create --name uniformsAddCol
+sequelize migration:create --name instrumentsAddCol

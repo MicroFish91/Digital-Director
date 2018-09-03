@@ -33,6 +33,8 @@
                     <h4>Instrument</h4>
                 </div>
             </div>
+<!--  -->
+
             <div class='accordian' id="student_rows">
                 <% for (let i = 0; i < students.length; i++) { %>
                     <div class='card'>
@@ -112,6 +114,18 @@
                                         <div class="col-md-6">
                                             <label class="label-space" for="address">Address</label>
                                             <input name="address" class='form-control' type="text" value="<%=students[i].address%>">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="label-space" for="checkedOut">Equipment checked out:</label>
+                                            <!-- <input name="checkedOut" class='form-control' type="text" readonly -->
+                                                <% if (students[i].uniforms.length > 0) { %> 
+                                                    <ul>
+                                                        <% for(let j = 0; j < students[i].uniforms.length; j++) { %>
+                                                        <li><%=students[i].uniforms[j].type%></li>
+                                                        <% } %>
+                                                    </ul>
+                                                <% } %>
+                                                <!-- </input> -->
                                         </div>
                                     </div>
                                     <div class="row pt-5">

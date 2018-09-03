@@ -6,13 +6,9 @@ module.exports = {
       'students',
       'teacherId',
       {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'teachers',
-          key: 'id'
-        },
-        allowNull: false
-      }
+        type: Sequelize.STRING,
+        allowNull: false        
+        }
     );
   },
 
