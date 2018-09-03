@@ -13,17 +13,6 @@
     border: none !important;
 }
 
-/* uniforms */
-
-.uniformInputBox{
-    margin-top: 8%;
-}
-
-#colorBox{
-    height: 100vh;
-    background-color: aqua;
-}
-
 /* instruments */
 
 button.orderType { 
@@ -47,6 +36,10 @@ button.orderBrand {
 
 @media only screen and (max-width: 768px) {
     #labels {
+        display: none;
+    }
+
+    .noShow {
         display: none;
     }
     label, .label-space {

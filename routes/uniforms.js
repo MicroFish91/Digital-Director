@@ -26,7 +26,7 @@ router.get('/uniforms', (req, res) => {
         }
     }).then()
         db.uniforms.findAll({
-        attributes: ['id','student_id','type', 'pant_size', 'jacket_size', 'dress_size', 'name'],
+        attributes: ['id','studentId','type', 'pant_size', 'jacket_size', 'dress_size', 'name'],
         order:['type']
     })
     .then((results) => {
@@ -51,24 +51,24 @@ router.get('/uniforms', (req, res) => {
     })
 })
 
-router.post('/uniforms', (req, res) => {
+// router.post('/uniforms', (req, res) => {
 
-    db.student.findAll().then((results) => {
-        let studentId = 0;
-        results.forEach(function(e){
-            if(req.body.studentName === `${e.firstName} ${e.lastName}`){
-                // console.log(e.id);
-                studentId = e.id;
-            }
-        })
-        return(studentId);
-    }).then((studentId) => {
-        db.uniforms.create({student_id: studentId, type:req.body.uniformType, pant_size:req.body.pantSize, jacket_size:req.body.jacketSize, dress_size:req.body.dressSize});
-    })
-    .then(()=> {
-        res.redirect('/uniforms');
-    })
-});
+//     db.student.findAll().then((results) => {
+//         let studentId = 0;
+//         results.forEach(function(e){
+//             if(req.body.studentName === `${e.firstName} ${e.lastName}`){
+//                 // console.log(e.id);
+//                 studentId = e.id;
+//             }
+//         })
+//         return(studentId);
+//     }).then((studentId) => {
+//         db.uniforms.create({student_id: studentId, type:req.body.uniformType, pant_size:req.body.pantSize, jacket_size:req.body.jacketSize, dress_size:req.body.dressSize});
+//     })
+//     .then(()=> {
+//         res.redirect('/uniforms');
+//     })
+// });
 
 
 module.exports = router;

@@ -20,7 +20,7 @@ router.post('/createUniform', (req, res) => {
 
     }).then((studentId) => {
         db.uniforms.create(
-            {student_id: studentId,
+            {studentId: studentId,
             type: req.body.uniformType,
             pant_size: req.body.pantSize,
             jacket_size: req.body.jacketSize,
