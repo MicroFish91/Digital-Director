@@ -115,17 +115,17 @@
                                             <label class="label-space" for="address">Address</label>
                                             <input name="address" class='form-control' type="text" value="<%=students[i].address%>">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4 offset-md-1 text-center">
                                             <label class="label-space" for="checkedOut">Equipment checked out:</label>
-                                            <ul>                                            
+                                            <ul class='text-center list-group'>                                            
                                                 <% if (students[i].uniforms.length > 0) { %> 
                                                         <% for(let j = 0; j < students[i].uniforms.length; j++) { %>
-                                                        <li><%=students[i].uniforms[j].type%></li>
+                                                        <li class='list-group-item'><%=students[i].uniforms[j].type%></li>
                                                         <% } %>
                                                 <% } %>
                                                 <% if (students[i].instruments.length > 0) { %> 
                                                     <% for(let j = 0; j < students[i].instruments.length; j++) { %>
-                                                    <li><%=students[i].instruments[j].instrument%></li>
+                                                    <li class='list-group-item'><%=students[i].instruments[j].instrument%></li>
                                                     <% } %>
                                             <% } %>
                                             </ul>
@@ -147,8 +147,6 @@
                         </div>
                     </div>
                     <% } %>
-
-
 
             <!-- Create a first student -->
                         <div class='card'>
