@@ -68,6 +68,8 @@
         <!-- Add Event Button -->
         <button type="submit" class="btn btn-primary" id="addEvent">Add Event</button>
 
+        <button type="submit" class="btn btn-primary" id="calendarView">Calendar View</button>
+
     </form>
 
     <br>
@@ -80,6 +82,7 @@
 
     <% var eventNumberIndex = 0; %>
     <% var events = 0; %>
+    <% var x = false; %>
 
     <% for (let accordionIndex = 0; accordionIndex < accordionCount; accordionIndex++) { %>
 
@@ -100,23 +103,27 @@
         <!-- Card Body -->
         <div id="collapse<%= accordionIndex; %>" class="collapse show" aria-labelledby="heading<%= accordionIndex; %>" data-parent="#accordion">
 
+          <% if (x != false) { %>
+          <hr>
+          <% } %>
+
           <!-- Event Row -->
-          <div class="card-body row" title="Description: <%= eventsArray[(events + (eventIndex + 1)) - 1].description; %>" style="background-color:#FFFFFF;color:#000000;text-decoration:none;" id="<%= eventsArray[(events + (eventIndex + 1)) - 1].id; %>">
+          <div class="card-body row eventDescription" title="Description: <%= eventsArray[(events + (eventIndex + 1)) - 1].description; %>" style="background-color:#FFFFFF;color:#000000;text-decoration:none;" id="<%= eventsArray[(events + (eventIndex + 1)) - 1].id; %>">
             
             <!-- Monthly Event Title -->
-            <div class="col eventText">
+            <div class="col eventTitle">
               <u>Title</u> <br> <%= eventsArray[(events + (eventIndex + 1)) - 1].title; %>
             </div>
 
-            <div class="col eventText">
+            <div class="col eventLocation">
               <u>Location</u> <br> <%= eventsArray[(events + (eventIndex + 1)) - 1].location; %>
             </div>
 
-            <div class="col eventText">
+            <div class="col eventStart">
               <u>Start Time</u> <br> <%= eventsArray[(events + (eventIndex + 1)) - 1].startDate.toString().slice(0, 24); %>
             </div>
 
-            <div class="col eventText">
+            <div class="col eventEnd">
               <u>End Time</u> <br> <%= eventsArray[(events + (eventIndex + 1)) - 1].endDate.toString().slice(0, 24); %>
             </div>  
 
@@ -132,11 +139,12 @@
           </div> <!-- End Card Body -->
 
         </div>  <!-- End Collapse --> 
-
+        <% x = true; %>
         <% } %>
 
           <% events += eventNumber[eventNumberIndex]; %>
           <% eventNumberIndex++; %>
+          <% x = false; %>
       
       </div>  <!-- End Card --> 
     </div> <!-- End Accordion --> 

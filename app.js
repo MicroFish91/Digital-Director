@@ -23,6 +23,7 @@ var express         = require('express'),
     app.use(require('./routes/uniforms'));
     app.use(require('./routes/home'));
     app.use(require('./routes/events'));
+    app.use(require('./routes/calendar'));
     app.use(require('./routes/instruments'));
     app.use(require('./routes/instrumentUpdate'));
     app.use(require('./routes/createInstrument'));
