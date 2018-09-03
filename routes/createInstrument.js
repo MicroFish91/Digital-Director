@@ -22,9 +22,9 @@ router.post('/createInstrument', (req, res) => {
         console.log(studentId);
         return(studentId);
 
-    }).then((studentId) => {
+    }).then((student_Id) => {
         db.instruments.create(
-            {studentId: studentId,
+            {studentId: student_Id,
             instrument_type: req.body.instrumentType,
             instrument: req.body.instrument,
             brand: req.body.brand,

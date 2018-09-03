@@ -23,9 +23,9 @@ router.post('/instrumentUpdate/:instrumentId', (req, res) => {
         console.log(studentId);
         return(studentId);
 
-    }).then((studentId) => {
+    }).then((student_Id) => {
         db.instruments.update(
-            {studentId: studentId,
+            {studentId: student_Id,
             instrument_type: req.body.instrumentType,
             instrument: req.body.instrument,
             brand: req.body.brand,

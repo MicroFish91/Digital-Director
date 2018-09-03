@@ -19,9 +19,9 @@ router.post('/uniformUpdate/:uniformId', (req, res) => {
         console.log(studentId);
         return(studentId);
 
-    }).then((studentId) => {
+    }).then((student_Id) => {
         db.uniforms.update(
-            {student_id: studentId,
+            {studentId: student_Id,
             type: req.body.uniformType,
             pant_size: req.body.pantSize,
             jacket_size: req.body.jacketSize,

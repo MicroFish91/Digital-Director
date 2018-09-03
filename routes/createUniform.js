@@ -16,9 +16,9 @@ router.post('/createUniform', (req, res) => {
             }
         })
         console.log(studentId);
-        return(studentId);
+        return(student_Id);
 
-    }).then((studentId) => {
+    }).then((student_Id) => {
         db.uniforms.create(
             {studentId: studentId,
             type: req.body.uniformType,
