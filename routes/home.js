@@ -17,6 +17,7 @@ router.get('/home', (req, res) => {
             }
         
         }).then(function (results) {
+
             res.render('home', {
                 students: students,
                 page: 'home'
