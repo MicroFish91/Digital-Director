@@ -8,15 +8,17 @@ router.use(bodyParser.urlencoded({extended: false}));
 
 router.post('/instrumentUpdate/:instrumentId', (req, res) => {
 
+    //Querys student database
     db.student.findAll({
         where: {
             teacherId: req.user.id
         }
     }).then((results) => {
+
+        // Matches selected student to studentId
         let studentId = 0;
         results.forEach(function(e){
             if(req.body.studentName1 === `${e.firstName} ${e.lastName}`){
-                // console.log(e.id);
                 studentId = e.id;
             }
         })
@@ -24,6 +26,8 @@ router.post('/instrumentUpdate/:instrumentId', (req, res) => {
         return(studentId);
 
     }).then((student_Id) => {
+
+        //Updates info in instruments database
         db.instruments.update(
             {studentId: student_Id,
             instrument_type: req.body.instrumentType,
@@ -41,6 +45,8 @@ router.post('/instrumentUpdate/:instrumentId', (req, res) => {
         )
     })
     .then(()=> {
+
+        //Rrefreshes page
         res.redirect('/instruments');
     })
 
