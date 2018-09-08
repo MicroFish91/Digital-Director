@@ -8,11 +8,13 @@ router.use(bodyParser.urlencoded({extended: false}));
 
 router.post('/uniformUpdate/:uniformId', (req, res) => {
 
+    //Querys student database
     db.student.findAll().then((results) => {
+
+        //Mathches selected student to studentId
         let studentId = 0;
         results.forEach(function(e){
             if(req.body.studentName === `${e.firstName} ${e.lastName}`){
-                // console.log(e.id);
                 studentId = e.id;
             }
         })
@@ -20,6 +22,8 @@ router.post('/uniformUpdate/:uniformId', (req, res) => {
         return(studentId);
 
     }).then((student_Id) => {
+
+        //Updates info in uniforms database
         db.uniforms.update(
             {studentId: student_Id,
             type: req.body.uniformType,
@@ -32,6 +36,8 @@ router.post('/uniformUpdate/:uniformId', (req, res) => {
         )
     })
     .then(()=> {
+
+        //Refreshes page
         res.redirect('/uniforms');
     })
 

@@ -11,12 +11,14 @@ let router = express.Router();
 var db = require('../models');
 
 
-
+//create new uniform
 router.get('/uniforms', (req, res) => {
 
+    //Define empty arrays to send to uniforms.ejs
     var studentListArray = [];
     var uniformInfoArray = [];
 
+     //Querys student database
     db.student.findAll({
     attributes: ['id','firstName', 'lastName'],
     where: {
@@ -24,10 +26,14 @@ router.get('/uniforms', (req, res) => {
     }
     })
     .then((results) => {
+
+        //Pushes students from database into array
         for (let i = 0; i < results.length; i++) {
             studentListArray.push(results[i].dataValues);
         }
     }).then()
+
+        //Querys uniform database
         db.uniforms.findAll({
         where: {
             teacherId: req.user.id
@@ -37,12 +43,15 @@ router.get('/uniforms', (req, res) => {
     })
     .then((results) => {
         
+        //Pushes uniform info from database into array
         for (let i = 0; i < results.length; i++) {
             uniformInfoArray.push(results[i].dataValues);
         }
     }).then(function(results){
         console.log(uniformInfoArray);
         res.render('uniforms',{
+
+            //info sent to uniforms.ejs
             pageTitle: "Uniforms",
             pageID: 'Uniforms',
             uniformTypeArray: uniformTypeArray,
@@ -56,29 +65,6 @@ router.get('/uniforms', (req, res) => {
         })
     })
 })
-
-router.post('/uniforms', (req, res) => {
-
-    db.student.findAll({
-        where: {
-        teacherId: req.user.id
-    }
-    }).then((results) => {
-        let studentId = 0;
-        results.forEach(function(e){
-            if(req.body.studentName === `${e.firstName} ${e.lastName}`){
-                // console.log(e.id);
-                studentId = e.id;
-            }
-        })
-        return(studentId);
-    }).then((studentId) => {
-        db.uniforms.create({studentId: studentId, type:req.body.uniformType, pant_size:req.body.pantSize, jacket_size:req.body.jacketSize, dress_size:req.body.dressSize});
-    })
-    .then(()=> {
-        res.redirect('/uniforms');
-    })
-});
 
 
 module.exports = router;
