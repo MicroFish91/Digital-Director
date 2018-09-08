@@ -1,2 +1,0 @@
-let db = require('./models');
-
