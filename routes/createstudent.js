@@ -4,8 +4,9 @@ db          = require('../models'),
 bodyParser  = require('body-parser');
 
 router.use(bodyParser.urlencoded({extended: false}));
-router.post('/createstudent', (req, res) => {
-    
+
+// Create a new entry in the students database
+router.post('/createstudent', (req, res) => {    
     let name = req.body.name.split(' ');
     db.student.create(
         {firstName: name[0],

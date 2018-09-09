@@ -15,7 +15,6 @@
 
 .list-group-item {
     background-color: inherit;
-    /* border: none;    */
 }
 
 /* uniforms */
@@ -48,7 +47,7 @@ button.orderBrand {
     margin-top: 2em;
 }
 
-/* //media query  hide on small*/
+/* //media query hide on small*/
 
 @media only screen and (max-width: 768px) {
     #labels {

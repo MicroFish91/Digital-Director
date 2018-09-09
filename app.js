@@ -87,28 +87,12 @@ app.get('/auth/google/callback',
   }
 ));
 
-
-// app.use((req, res, next) => {
-//   if (req.cookies.user_id && !req.session.user) {
-//       res.clearCookie('user_id');
-//   }
-//   next();
-// })
-
-
 app.get('/account', ensureAuthenticated, function (req, res) {
   res.render('account', {
     user: req.user,
     page: 'account'
   });
 });
-
-// app.get('/home', function (req, res) {
-//   res.render('home', {
-//     user: req.user,
-//     page: 'home'
-//   });
-// });
 
 app.get('/login', function (req, res) {
   // res.redirect('/testlogin.html')
@@ -162,16 +146,5 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
- 
-// error handler
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
- 
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
 
 server.listen(3000);

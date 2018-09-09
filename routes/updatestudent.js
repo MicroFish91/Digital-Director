@@ -5,6 +5,7 @@ bodyParser  = require('body-parser');
 
 router.use(bodyParser.urlencoded({extended: false}));
 
+// update a student record in the database
 router.post('/updatestudent/:studentId', (req, res) => {
     let name = req.body.name.split(' ');
     db.student.update(
