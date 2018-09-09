@@ -1,3 +1,4 @@
+// Upon page load
 $(function(){
 
     // Calendar View Event Listener
@@ -8,6 +9,7 @@ $(function(){
         // Holds list of current events to pass to calendar
         let jsonArray = compileJSON();
 
+        // Put JSON into localstorage
         localStorage.setItem("calendarObjs", JSON.stringify(jsonArray));
 
         document.location.href = "../calendar";

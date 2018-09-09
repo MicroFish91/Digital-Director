@@ -190,8 +190,6 @@ function eventsPerAccordion(eventsArray, accordionArray){
 
     }
 
-    console.log(events);
-
     // Return array of similar events to match up with Accordion Names Array
     return events;
 
