@@ -2,7 +2,7 @@
 Digital Director is a lightweight, easy-to-use teacher management web application designed with after-school programs in mind. 
 
 ## Motivation
-Several members of our group have experience teaching before becoming software developers. We noticed a need for an application that would be as quick and easy to use as possible. Many existing programs are bloated with rarely used features and make the most commonly used features hard to find. We focused on designing this software for after-school programs as we saw the greatest need for a secondary management tool there.
+Several members of us have experience teaching before becoming software developers. We noticed a need for an application that would be as quick and easy to use as possible. Many existing programs are bloated with rarely used features and make the most commonly used features hard to find. We focused on designing this software for after-school programs as we saw the greatest need for a secondary management tool there.
  
 ## Screenshots
 
