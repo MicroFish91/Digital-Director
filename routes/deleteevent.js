@@ -16,7 +16,7 @@ router.post('/deleteevent', function(req, res){
         where: {
            id: req.body.id 
         }
-      }).then(function(rowDeleted){ // rowDeleted will return number of rows deleted
+      }).then(function(rowDeleted){ 
         res.redirect('/events');
       })
       .catch(function(error){

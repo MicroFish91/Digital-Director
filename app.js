@@ -38,7 +38,6 @@ passport.use(strategy);
 
 // Serializing and Deserializing
 passport.serializeUser(function (user, done) {
-  // console.log(user);
   done(null, user);
 });
 
@@ -119,6 +118,7 @@ function ensureAuthenticated(req, res, next) {
 
 app.use(ensureAuthenticated);
 
+// ** Routes Section **
 app.use(require('./routes/uniforms'));
 app.use(require('./routes/home'));
 app.use(require('./routes/events'));

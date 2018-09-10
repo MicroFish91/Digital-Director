@@ -17,7 +17,7 @@ calendar.headerClick.addEventListener(handleHeaderClick);
 // Render Calendar
 calendar.render();
 
-
+// Loop through and set up events into calendar via eventsArray (parsed JSON)
 for (let i = 0; i < eventsArray.length; i++) {
 
     item = new p.Item();
@@ -31,7 +31,7 @@ for (let i = 0; i < eventsArray.length; i++) {
 }
 
 
-
+// Click event for header
 function handleHeaderClick(sender, args)
 {
 	if(sender.currentView === p.CalendarView.Timetable)
@@ -41,7 +41,7 @@ function handleHeaderClick(sender, args)
 	}
 }
 
-
+// Click event to record and add events in customizable calendar view
 function handleSelection(sender, args)
 {
 	if(sender.currentView === p.CalendarView.SingleMonth)
@@ -57,10 +57,8 @@ function handleSelection(sender, args)
 		
         while(start < end)
 		{
-            console.log(start);
 			sender.timetableSettings.dates.add(start);
             start = p.DateTime.addDays(start, 1);
-            console.log(start);
 			
 		}
 		
@@ -68,7 +66,7 @@ function handleSelection(sender, args)
 	}
 }
 
-
+// Configures the time in a way the the MindFusion Calendar API can read
 function timeConfig(timeFormat){
 
     var today = new Date();
