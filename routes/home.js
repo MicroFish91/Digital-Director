@@ -21,7 +21,8 @@ router.get('/home', (req, res) => {
 
             res.render('home', {
                 students: students,
-                page: 'home'
+                page: 'home',
+                user: req.user
             });
         });
 });

@@ -54,7 +54,8 @@ router.get('/instruments', (req, res) => {
                 instrumentArray: instrumentArray,
                 studentListArray:studentListArray,
                 instrumentTypeArray: instrumentTypeArray,
-                page: "instruments"
+                page: "instruments",
+                user: req.user
             });
         });
 });
