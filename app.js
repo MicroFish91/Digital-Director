@@ -81,7 +81,7 @@ app.get('/auth/google', passport.authenticate('google', {
 
 app.get('/auth/google/callback',
   passport.authenticate('google', {
-    successRedirect: '/layout',
+    successRedirect: '/home',
     failureRedirect: '/'
   }
 ));
@@ -94,17 +94,18 @@ app.get('/account', ensureAuthenticated, function (req, res) {
 });
 
 app.get('/login', function (req, res) {
-  // res.redirect('/testlogin.html')
-  res.render('login', {
-    user: req.user,
-    page: 'login'
-  });
+  res.redirect('/auth/google/')
+  // res.render('login', {
+  //   user: req.user,
+  //   page: 'login;
   // res.sendFile(__dirname + '/testlogin.html');
 });
 
 app.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/login');
+  req.session.destroy(function(e){
+    req.logout();
+    res.redirect('/');
+  });
 });
 
 function ensureAuthenticated(req, res, next) {
@@ -113,7 +114,7 @@ function ensureAuthenticated(req, res, next) {
     return next();
   }
   console.log('redirected back to login. please log in again.')
-  res.redirect('/login');
+  res.redirect('/');
 }
 
 app.use(ensureAuthenticated);
@@ -135,11 +136,11 @@ app.use(require('./routes/updatestudent'));
 app.use(require('./routes/deletestudent')); 
 app.use(require('./routes/createstudent')); 
 
-app.get('/layout', ensureAuthenticated, function (req, res) {
-    res.render('layout', {
-      user: req.user
-    });
-});
+// app.get('/layout', ensureAuthenticated, function (req, res) {
+//     res.render('layout', {
+//       user: req.user
+//     });
+// });
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
