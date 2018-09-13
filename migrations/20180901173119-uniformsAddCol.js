@@ -4,20 +4,20 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     
     return queryInterface.addColumn(
-      'eventGroups',
-      'groupId',
+      'uniforms',
+      'studentId',
       {
         type: Sequelize.INTEGER,
         references: {
-          model: 'groups',
+          model: 'students',
           key: 'id'
         },
-        allowNull: true
+        allowNull: false
       }
     );
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('eventGroups', 'groupId');
+    return queryInterface.removeColumn('uniforms', 'studentId');
   }
 };

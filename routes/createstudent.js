@@ -5,7 +5,8 @@ bodyParser  = require('body-parser');
 
 router.use(bodyParser.urlencoded({extended: false}));
 
-router.post('/createstudent', (req, res) => {
+// Create a new entry in the students database
+router.post('/createstudent', (req, res) => {    
     let name = req.body.name.split(' ');
     db.student.create(
         {firstName: name[0],
@@ -17,7 +18,8 @@ router.post('/createstudent', (req, res) => {
         parentname2: req.body.parentname2,
         parentPhoneNumber: req.body.parentPhone.replace(/[^\d]/g, ""),
         parentEmail: req.body.parentEmail,
-        address: req.body.address
+        address: req.body.address,
+        teacherId: req.user.id
         },
     )
     .then(()=> {

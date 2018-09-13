@@ -14,8 +14,7 @@ var express         = require('express'),
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(cookieParser());
-       
+    app.use(cookieParser());   
 
 var strategy = new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
@@ -74,12 +73,13 @@ app.get('/auth/google', passport.authenticate('google', {
 
 app.get('/auth/google/callback',
   passport.authenticate('google', {
-    successRedirect: '/layout',
-    failureRedirect: '/login'
+    successRedirect: '/home',
+    failureRedirect: '/'
   }
 ));
 
 app.get('/login', function (req, res) {
+  // res.redirect('/auth/google/')
   res.render('login', {
     user: req.user,
     page: 'login'
@@ -87,8 +87,9 @@ app.get('/login', function (req, res) {
 });
 
 app.get('/logout', function (req, res) {
-  req.session.destroy(function (err) {
-    res.redirect('/login'); //Inside a callback… bulletproof!
+  req.session.destroy(function(e){
+    req.logout();
+    res.redirect('/');
   });
 });
 
@@ -96,28 +97,34 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/login');
+  console.log('redirected back to login. please log in again.')
+  res.redirect('/');
 }
 
 app.use(ensureAuthenticated);
 
+// ** Routes Section **
 app.use(require('./routes/uniforms'));
-// app.use(require('./routes/layout'));
 app.use(require('./routes/home'));
 app.use(require('./routes/events'));
+app.use(require('./routes/calendar'));
+app.use(require('./routes/instruments'));
+app.use(require('./routes/instrumentUpdate'));
+app.use(require('./routes/createInstrument'));
+app.use(require('./routes/deleteInstrument')); 
+app.use(require('./routes/uniformUpdate')); 
+app.use(require('./routes/deleteUniform'));
+app.use(require('./routes/createUniform'));
+app.use(require('./routes/deleteevent'));
 app.use(require('./routes/updatestudent'));
 app.use(require('./routes/deletestudent')); 
-app.use(require('./routes/createstudent'));   
-// app.use(require('./routes/testlogin')); 
+app.use(require('./routes/createstudent')); 
 
-app.get('/layout', function (req, res) {
-  
-  // db.teacher.create({id: 2, unique_Auth: req.user.id, name: req.user.name, email: req.user.email});
-  // db.teacher.create({id: id, unique_Auth: unique_Auth, name: name, email: email});
-  res.render('layout', {
-    user: req.user
-  });
-});
+// app.get('/layout', ensureAuthenticated, function (req, res) {
+//     res.render('layout', {
+//       user: req.user
+//     });
+// });
 
 app.get('/account', function (req, res) {
   res.render('account', {
@@ -130,14 +137,6 @@ app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
-});
-
-app.use(function(err, req, res, next) {
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
- 
-  res.status(err.status || 500);
-  res.render('error');
 });
 
 app.listen(3000);

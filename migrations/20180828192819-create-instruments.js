@@ -8,39 +8,45 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      student_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'students',
-          key: 'id'
-        },
-      },
       instrument_type: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       instrument: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       brand: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       model_number: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       serial_number: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       year_purchased: {
-        type: Sequelize.INTEGER
+        allowNull: true,
+        type: Sequelize.STRING
       },
       condition: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       cost: {
-        type: Sequelize.INTEGER
+        allowNull: true,
+        type: Sequelize.STRING
       },
       current_est_value: {
-        type: Sequelize.INTEGER
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      name: {
+        allowNull: true,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -49,6 +55,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      teacherId: {
+        type: Sequelize.STRING,
+        allowNull: false   
       }
     });
   },

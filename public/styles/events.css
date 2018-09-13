@@ -1,3 +1,115 @@
 h1, h2{
     text-align: center;
 }
+
+.eventText {
+  vertical-align: 10vh;
+}
+  
+  .icon-trash {
+    width: 4%;
+    height: 6vh;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .icon-trash .trash-lid {
+    width: 62%;
+    height: 10%;
+    position: absolute;
+    left: 50%;
+    margin-left: -31%;
+    top: 10.5%;
+    background-color: #000;
+    border-top-left-radius: 80%;
+    border-top-right-radius: 80%;
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    transform: rotate(-5deg); 
+  }
+  
+  .icon-trash .trash-lid:after {
+    content: "";
+    width: 26%;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    margin-left: -13%;
+    margin-top: -10%;
+    background-color: inherit;
+    border-top-left-radius: 30%;
+    border-top-right-radius: 30%;
+    -webkit-transform: rotate(-1deg);
+    -moz-transform: rotate(-1deg);
+    -ms-transform: rotate(-1deg);
+    transform: rotate(-1deg); 
+  }
+  
+  .icon-trash .trash-container {
+    width: 56%;
+    height: 65%;
+    position: absolute;
+    left: 50%;
+    margin-left: -28%;
+    bottom: 10%;
+    background-color: #000;
+    border-bottom-left-radius: 15%;
+    border-bottom-right-radius: 15%;
+  }
+  
+  .icon-trash .trash-container:after {
+    content: "";
+    width: 110%;
+    height: 12%;
+    position: absolute;
+    left: 50%;
+    margin-left: -55%;
+    top: 0;
+    background-color: inherit;
+    border-bottom-left-radius: 45%;
+    border-bottom-right-radius: 45%;
+  }
+  
+  .icon-trash .trash-line-1 {
+    width: 4%;
+    height: 50%;
+    position: absolute;
+    left: 38%;
+    margin-left: -2%;
+    bottom: 17%;
+    background-color: #252527;
+  }
+  
+  .icon-trash .trash-line-2 {
+    width: 4%;
+    height: 50%;
+    position: absolute;
+    left: 50%;
+    margin-left: -2%;
+    bottom: 17%;
+    background-color: #252527;
+  }
+  
+  .icon-trash .trash-line-3 {
+    width: 4%;
+    height: 50%;
+    position: absolute;
+    left: 62%;
+    margin-left: -2%;
+    bottom: 17%;
+    background-color: #252527;
+  }
+
+  .collapse.in {
+    height: auto !important;
+}
+
+@media only screen and (max-width: 768px) {
+  
+  button.trashIt {
+    max-width: 150px !important;
+    margin: auto;
+  }
+
+}

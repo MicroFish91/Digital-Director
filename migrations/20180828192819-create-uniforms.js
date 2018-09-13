@@ -8,13 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      student_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'students',
-          key: 'id'
-        },
-      },
       type: {
         type: Sequelize.STRING
       },
@@ -27,6 +20,10 @@ module.exports = {
       dress_size: {
         type: Sequelize.STRING
       },
+      name: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -34,6 +31,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      teacherId: {
+        type: Sequelize.STRING,
+        allowNull: false   
       }
     });
   },

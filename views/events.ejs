@@ -8,11 +8,17 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link rel="stylesheet" href="events.css">
-    <link rel="stylesheet" href="./datetimepicker/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="/styles/events.css">
+    <link rel="stylesheet" href="/datetimepicker/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
 
+    <% include partials/header.ejs %>
+
+    <div class="container">
+
+    <br>  
     <h1>Event Planner</h1>
 
     <br>
@@ -23,15 +29,15 @@
         <div class="form-row">
 
             <div class="col">
-                Event Title: <input type="text" class="form-control" placeholder="Title" name="title" id="eventTitle" required>
+                Title: <input type="text" class="form-control" placeholder="Event Title" name="title" id="eventTitle" required>
             </div>
 
             <div class="col">
-                Event Location: <input type="text" class="form-control" placeholder="Location" name="location" id="eventLocation" required>
+                Location: <input type="text" class="form-control" placeholder="Event Location" name="location" id="eventLocation" required>
             </div>
 
             <div class="col">
-                Event Description: <input type="text" class="form-control" placeholder="Description" name="description" id="eventDescription" required>
+                Description: <input type="text" class="form-control" placeholder="Event Description" name="description" id="eventDescription" required>
             </div>
 
         </div>
@@ -63,51 +69,101 @@
         <!-- Add Event Button -->
         <button type="submit" class="btn btn-primary" id="addEvent">Add Event</button>
 
+        <button type="submit" class="btn btn-primary" id="calendarView">Calendar View</button>
+
     </form>
 
     <br>
     <br>
 
-    <h2>Activity Log</h2>
+    <h2>My Events</h2>
+
+    <!-- EJS Declarations -->
+    <% if (success) { %>
+
+    <% var eventNumberIndex = 0; %>
+    <% var events = 0; %>
+    <% var x = false; %>
+
+    <% for (let accordionIndex = 0; accordionIndex < accordionCount; accordionIndex++) { %>
 
     <!-- Field Showing Currently Scheduled Activities -->
-     <div id="accordion">
+     <div class="accordion" id="accordion">
 
       <!-- Card Header -->
       <div class="card">
-        <div class="card-header" id="headingOne">
+        <div class="card-header" id="heading<%= accordionIndex; %>">
           <h5 class="mb-0">
-            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              <h3 id="month-8">August</h3>
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%= accordionIndex; %>" aria-expanded="true" aria-controls="collapse<%= accordionIndex; %>">
+              <h3><%= accordionNames[accordionIndex]; %></h3>
             </button>
           </h5>
         </div>
     
+        <% for (let eventIndex = 0; eventIndex < eventNumber[eventNumberIndex]; eventIndex++) { %>
         <!-- Card Body -->
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-          
+        <div id="collapse<%= accordionIndex; %>" class="collapse show" aria-labelledby="heading<%= accordionIndex; %>" data-parent="#accordion">
+
+          <% if (x != false) { %>
+          <hr>
+          <% } %>
+
           <!-- Event Row -->
-          <div class="card-body row">
-
+          <div class="card-body row eventDescription" title="Description: <%= eventsArray[(events + (eventIndex + 1)) - 1].description; %>" style="background-color:#FFFFFF;color:#000000;text-decoration:none;" id="<%= eventsArray[(events + (eventIndex + 1)) - 1].id; %>">
+            
             <!-- Monthly Event Title -->
-            <div class="col-6">
-              Event Title
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-12 eventTitle" style="text-align: center">
+              <u>Title</u> <br> <%= eventsArray[(events + (eventIndex + 1)) - 1].title; %>
             </div>
 
-            <div class="col-3">
-              Start Date
+            <br>  
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 eventLocation" style="text-align: center">
+              <u>Location</u> <br> <%= eventsArray[(events + (eventIndex + 1)) - 1].location; %>
             </div>
 
-            <div class="col-3">
-              End Date
+            <br>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 eventStart" style="text-align: center">
+              <u>Start Time</u> <br> <%= eventsArray[(events + (eventIndex + 1)) - 1].startDate.toString().slice(0, 24); %>
+            </div>
+
+            <br>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 eventEnd" style="text-align: center">
+              <u>End Time</u> <br> <%= eventsArray[(events + (eventIndex + 1)) - 1].endDate.toString().slice(0, 24); %>
             </div>  
 
+            <br>
+
+            <!-- Trash Button -->
+            <!-- <div class="icon-trash col-0.5 col-md-1 col-sm-1.5 trashIt" id="t<%= eventsArray[(events + (eventIndex + 1)) - 1].id; %>">
+              <div class="trash-lid" style="background-color: #D37ABC"></div>
+              <div class="trash-container" style="background-color: #D37ABC"></div>
+              <div class="trash-line-1"></div>
+              <div class="trash-line-2"></div>
+              <div class="trash-line-3"></div>
+            </div> -->
+
+            <!-- <button style="font-size:24px" id="t<%= eventsArray[(events + (eventIndex + 1)) - 1].id; %>" class="fa fa-trash-o trashIt col-0.5 col-sm-2"></button> -->
+
+            <button style="font-size:24px; max-height: 50px; max-width: 65px; text-align: center" id="t<%= eventsArray[(events + (eventIndex + 1)) - 1].id; %>" class="btn btn-primary center-block fa fa-trash-o trashIt col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-auto" id="addEvent"></button>
 
           </div> <!-- End Card Body -->
-        </div>  <!-- End Collapse --> 
 
+        </div>  <!-- End Collapse --> 
+        <% x = true; %>
+        <% } %>
+
+          <% events += eventNumber[eventNumberIndex]; %>
+          <% eventNumberIndex++; %>
+          <% x = false; %>
+      
       </div>  <!-- End Card --> 
     </div> <!-- End Accordion --> 
+    <% } %>
+    <% } %>
+    </div> <!-- End .container -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -121,6 +177,6 @@
         $('#datetimepicker1').datetimepicker();
       });
     </script>
-    <script src="./scripts/event.js"></script>
+    <script src="/scripts/event.js"></script>
   </body>
 </html>

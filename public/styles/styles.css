@@ -1,7 +1,4 @@
 
-.uniformInputBox{
-    margin-top: 5%;
-}
 .student-list {
     width: 30%;
 }
@@ -14,4 +11,53 @@
     color: black;
     text-decoration: none !important;        
     border: none !important;
+}
+
+.list-group-item {
+    background-color: inherit;
+}
+
+/* uniforms */
+
+.uniformInputBox{
+    margin-top: 8%;
+}
+
+#colorBox{
+    height: 100vh;
+    background-color: aqua;
+}
+
+/* instruments */
+
+button.orderType { 
+    background:none;border:none; 
+    cursor:pointer;
+}
+button.orderInstrument { 
+    background:none;border:none; 
+    cursor:pointer;
+}
+button.orderBrand { 
+    background:none;border:none; 
+    cursor:pointer;
+}
+
+.label-space {
+    margin-top: 2em;
+}
+
+/* //media query hide on small*/
+
+@media only screen and (max-width: 768px) {
+    #labels {
+        display: none;
+    }
+
+    .noShow {
+        display: none;
+    }
+    label, .label-space {
+        margin-top: 1.5rem;
+    }
 }
