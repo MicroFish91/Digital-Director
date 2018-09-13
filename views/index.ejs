@@ -18,10 +18,67 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
 		crossorigin="anonymous">
 	<link rel="stylesheet" href="styles/index.css">
+	<link rel="shortcut icon" href="images/DDtab.ico">
 </head>
 
 <body>
 	<%- include partials/header.ejs %>
+
+	<div class='container-fluid no-padding main'>
+		<img class="img-fluid" id='black'src='/images/band.jpg'>
+		<div class='row'>
+			<div class='row titleRow offset-3'>
+				<div class='col-sm-4 titleContain'>
+					<h3 id='indexTitle'>Digital Director</h3>
+					<h4 id='indexDesc'>Management - made easy.</h4>
+				</div>
+				<div class='col-4'>
+					<img id='indexLogo'src='/images/DDlogo.svg'>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="appInfo container-fluid">
+
+			<div class="roster row">
+				<div class="icon col-sm-6">
+					<img src="images/student.svg" alt="Contact Image" class="iconImage">
+				</div>
+				<div class="info col-sm-6">
+					<h3 class="infoHeading">Student List</h3>
+					<p>Digital Director's student list allows you to quickly and easily get the contact information of all your students and parents.</p>
+				</div>
+			</div>
+		
+			<div class="scheduling row">
+				<div class="info col-sm-6">
+					<h3 class="infoHeading">Scheduling</h3>
+					<p>Create your band schedule and keep track of all upcoming events.</p>
+				</div>
+				<div class="icon col-sm-6">
+					<img src="images/calendar.svg" alt="Contact Image" class="iconImage">
+				</div>
+			</div>
+		
+			<div class="communication row">
+				<div class="icon col-sm-6">
+					<img src="images/inventory.svg" alt="Contact Image" class="iconImage">
+				</div>
+				<div class="info col-sm-6">
+					<h3 class="infoHeading">Inventory</h3>
+					<p>Keep track of all your program's inventory. Items checked out to a student show up in the student list.</p>
+				</div>
+			</div>
+		
+		
+		</div>
+
+		<div class="footer">
+				<a href="https://github.com/MicroFish91/Digital-Director"  target="blank"><img src="images/github-logo.svg"></a>
+				<p>&copy 2018 Digital Director</p>
+			</div>
+
 
 
 
