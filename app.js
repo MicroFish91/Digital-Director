@@ -1,20 +1,16 @@
 var express         = require('express'),
     app             = express(),
     db              = require('./models'),
-    server          = require('http').createServer(app),
     passport        = require('passport'),
-    util            = require('util'),
     bodyParser      = require('body-parser'),
     cookieParser    = require('cookie-parser'),
     session         = require('express-session'),
     GoogleStrategy  = require('passport-google-oauth2').Strategy,
     GOOGLE_CLIENT_ID = "521837067682-ojjmkmgmnpquk89i899gphv2dvub3t46.apps.googleusercontent.com",
-    GOOGLE_CLIENT_SECRET = "KFfcGOvPDt1MR82t7AzKRB8_";
+    GOOGLE_CLIENT_SECRET = "KFfcGOvPDt1MR82t7AzKRB8_",
+    SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-    var SequelizeStore = require('connect-session-sequelize')(session.Store);
-    var myStore = new SequelizeStore({
-      db: db.sequelize
-    })
+    var myStore = new SequelizeStore({ db: db.sequelize })
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,11 +23,7 @@ var strategy = new GoogleStrategy({
     passReqToCallback: true
   },
   function (request, accessToken, refreshToken, profile, done) {
-
-    // associate the Google account with a user record in database,
-    // and return that user
     return done(null, profile);
-
   });
 
 passport.use(strategy);
@@ -54,7 +46,7 @@ app.use(session({
   key: 'user_id',
   secret: 'secret_code',
   store: myStore,
-  resave: true,
+  resave: false,
   saveUninitialized: true,
   cookie: {
     maxAge: 24 * 60 * 60 * 1000
@@ -86,19 +78,12 @@ app.get('/auth/google/callback',
   }
 ));
 
-app.get('/account', ensureAuthenticated, function (req, res) {
-  res.render('account', {
-    user: req.user,
-    page: 'account'
-  });
-});
-
 app.get('/login', function (req, res) {
-  res.redirect('/auth/google/')
-  // res.render('login', {
-  //   user: req.user,
-  //   page: 'login;
-  // res.sendFile(__dirname + '/testlogin.html');
+  // res.redirect('/auth/google/')
+  res.render('login', {
+    user: req.user,
+    page: 'login'
+  });
 });
 
 app.get('/logout', function (req, res) {
@@ -110,7 +95,6 @@ app.get('/logout', function (req, res) {
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    console.log('you are siged in.')
     return next();
   }
   console.log('redirected back to login. please log in again.')
@@ -142,10 +126,17 @@ app.use(require('./routes/createstudent'));
 //     });
 // });
 
+app.get('/account', function (req, res) {
+  res.render('account', {
+    user: req.user,
+    page: 'account'
+  });
+});
+
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-server.listen(3000);
+app.listen(3000);
