@@ -23,7 +23,7 @@ Several software developers on our team come from a teaching background. This pa
 
 ## How to Use
 
-Begin by navigating to [Digital Director](https://digitaldirector.org). Click the login button where you will be prompted to sign in using your Google account. Upon successful authentication, the user will be redirected to the home page to view live information about his or her students. On the equipment and instruments tab, the user will be able to manage inventory checked out to the students or for general use.  Finally, on the events tab the user is able to organize activities for future reference.  These activities may organized in a list or viewed in a calendar for convenience. All data submitted through Digital Director is easy to add, update, and maintain.
+Begin by navigating to [Digital Director](https://digitaldirector.org). Click the login button where you will be prompted to sign in using your Google account. Upon successful authentication, the user will be redirected to the home page to view live information about his or her students. On the equipment and instruments tab, the user will be able to set up and manage inventory checked out to the students or for general use.  Finally, on the events tab the user is able to organize activities for future reference.  These activities may be organized in a list or viewed in a calendar for convenience. All data submitted through Digital Director is easy to add, update, and maintain.
 
 
 ## Code Organization
@@ -43,11 +43,11 @@ Begin by navigating to [Digital Director](https://digitaldirector.org). Click th
 
 #### MindFusion Javascript Scheduler
 
-Events configured from main page display in the calendar properly; however, events scheduled specifically via calendar view and not events view show up only temporarily and will need further database code to permanently update.  This was considered a stretch goal due to time constraints, but core functionality works as intended.
+Events configured from the main page display in the calendar properly; however, events scheduled specifically via the calendar view and not the events view show up only temporarily and will need further database code to permanently update.  This was considered a stretch goal due to time constraints, but core functionality works as intended.
 
 #### Account Access
 
-We set up the code to only show data associated with the logged-in user.  We considered it a stretch goal to also add in student and/or group leader users which would be able to view different amounts of data based on the granted "privilege access level".
+We set up the code to only show data associated with the logged-in user.  We considered it a stretch goal to also add in student and/or group lead users which would be able to view different amounts of data based on the granted "privilege access level".
 
 ## Technologies & Frameworks
 
