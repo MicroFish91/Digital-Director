@@ -1,20 +1,16 @@
 var express         = require('express'),
     app             = express(),
     db              = require('./models'),
-    server          = require('http').createServer(app),
     passport        = require('passport'),
-    util            = require('util'),
     bodyParser      = require('body-parser'),
     cookieParser    = require('cookie-parser'),
     session         = require('express-session'),
     GoogleStrategy  = require('passport-google-oauth2').Strategy,
     GOOGLE_CLIENT_ID = "521837067682-ojjmkmgmnpquk89i899gphv2dvub3t46.apps.googleusercontent.com",
-    GOOGLE_CLIENT_SECRET = "KFfcGOvPDt1MR82t7AzKRB8_";
+    GOOGLE_CLIENT_SECRET = "KFfcGOvPDt1MR82t7AzKRB8_",
+    SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-    var SequelizeStore = require('connect-session-sequelize')(session.Store);
-    var myStore = new SequelizeStore({
-      db: db.sequelize
-    })
+    var myStore = new SequelizeStore({ db: db.sequelize })
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,18 +24,13 @@ var strategy = new GoogleStrategy({
     passReqToCallback: true
   },
   function (request, accessToken, refreshToken, profile, done) {
-
-    // associate the Google account with a user record in database,
-    // and return that user
     return done(null, profile);
-
   });
 
 passport.use(strategy);
 
 // Serializing and Deserializing
 passport.serializeUser(function (user, done) {
-  // console.log(user);
   done(null, user);
 });
 
@@ -56,7 +47,7 @@ app.use(session({
   key: 'user_id',
   secret: 'secret_code',
   store: myStore,
-  resave: true,
+  resave: false,
   saveUninitialized: true,
   cookie: {
     maxAge: 24 * 60 * 60 * 1000
@@ -84,53 +75,27 @@ app.get('/auth/google', passport.authenticate('google', {
 app.get('/auth/google/callback',
   passport.authenticate('google', {
     successRedirect: '/layout',
-    failureRedirect: '/'
+    failureRedirect: '/login'
   }
 ));
 
-
-// app.use((req, res, next) => {
-//   if (req.cookies.user_id && !req.session.user) {
-//       res.clearCookie('user_id');
-//   }
-//   next();
-// })
-
-
-app.get('/account', ensureAuthenticated, function (req, res) {
-  res.render('account', {
-    user: req.user,
-    page: 'account'
-  });
-});
-
-// app.get('/home', function (req, res) {
-//   res.render('home', {
-//     user: req.user,
-//     page: 'home'
-//   });
-// });
-
 app.get('/login', function (req, res) {
-  // res.redirect('/testlogin.html')
   res.render('login', {
     user: req.user,
     page: 'login'
   });
-  // res.sendFile(__dirname + '/testlogin.html');
 });
 
 app.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/login');
+  req.session.destroy(function (err) {
+    res.redirect('/login'); //Inside a callback… bulletproof!
+  });
 });
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    console.log('you are siged in.')
     return next();
   }
-  console.log('redirected back to login. please log in again.')
   res.redirect('/login');
 }
 
@@ -145,12 +110,19 @@ app.use(require('./routes/deletestudent'));
 app.use(require('./routes/createstudent'));   
 // app.use(require('./routes/testlogin')); 
 
-app.get('/layout', ensureAuthenticated, function (req, res) {
+app.get('/layout', function (req, res) {
   
-  console.log('user object: ' + req.user.id);
-  // db.teacher.create({id: req.user.id, name: req.user.displayName, email: req.user.email});
+  // db.teacher.create({id: 2, unique_Auth: req.user.id, name: req.user.name, email: req.user.email});
+  // db.teacher.create({id: id, unique_Auth: unique_Auth, name: name, email: email});
   res.render('layout', {
     user: req.user
+  });
+});
+
+app.get('/account', function (req, res) {
+  res.render('account', {
+    user: req.user,
+    page: 'account'
   });
 });
 
@@ -159,16 +131,13 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
- 
-// error handler
+
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
  
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
 
-server.listen(3000);
+app.listen(3000);
