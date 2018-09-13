@@ -1,6 +1,6 @@
 # Digital Director
 
-Digital Director is a light-weight, full stack web application built to help teachers manage their after school programs.  The application connects a back-end server and database to a convenient and intuitive front-end GUI which assists the user in tracking student information, inventory, and calendar events.
+Digital Director is a light-weight, full stack web application built to help teachers manage their after school programs.  The application connects a back-end server and database to a convenient and intuitive front-end UI which assists the user in tracking student information, inventory, and calendar events.
 
 
 ## Motivation
