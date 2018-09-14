@@ -41,13 +41,14 @@ router.get('/instruments', (req, res) => {
             }
         })
         .then((results) => {
-            
+            console.log(req.user.id);
             //Pushes instruments/items from database into array
             for (let i = 0; i < results.length; i++) {
                 instrumentArray.push(results[i].dataValues);
             }
 
         }).then(function (results) {
+            console.log('test');
             res.render('instruments', {
 
                 //info sent to instruments.ejs

@@ -6,9 +6,13 @@ var express         = require('express'),
     cookieParser    = require('cookie-parser'),
     session         = require('express-session'),
     GoogleStrategy  = require('passport-google-oauth2').Strategy,
+
+    //ask how to 
     GOOGLE_CLIENT_ID = "521837067682-ojjmkmgmnpquk89i899gphv2dvub3t46.apps.googleusercontent.com",
     GOOGLE_CLIENT_SECRET = "KFfcGOvPDt1MR82t7AzKRB8_",
     SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+
 
     var myStore = new SequelizeStore({ db: db.sequelize })
 
@@ -42,12 +46,13 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 
+// ask how this should look like
 app.use(session({
-  key: 'user_id',
-  secret: 'secret_code',
+  key: 'session',
+  secret: 'keyboardcat',
   store: myStore,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
     maxAge: 24 * 60 * 60 * 1000
   }
@@ -86,8 +91,9 @@ app.get('/login', function (req, res) {
   });
 });
 
-app.get('/logout', function (req, res) {
+app.get('/logout', (req, res) => {
   req.session.destroy(function(e){
+    res.clearCookie('session');
     req.logout();
     res.redirect('/');
   });
@@ -97,7 +103,7 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  console.log('redirected back to login. please log in again.')
+  console.log('redirected to homepage. please log in.')
   res.redirect('/');
 }
 
@@ -119,19 +125,6 @@ app.use(require('./routes/deleteevent'));
 app.use(require('./routes/updatestudent'));
 app.use(require('./routes/deletestudent')); 
 app.use(require('./routes/createstudent')); 
-
-// app.get('/layout', ensureAuthenticated, function (req, res) {
-//     res.render('layout', {
-//       user: req.user
-//     });
-// });
-
-app.get('/account', function (req, res) {
-  res.render('account', {
-    user: req.user,
-    page: 'account'
-  });
-});
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
