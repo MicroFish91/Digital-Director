@@ -6,7 +6,7 @@ border-color: rgba(0,0,0,.2);
 color: #000;
 -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.2);
 box-shadow: 0 2px 10px rgba(0,0,0,.2);
-display: block;
+display: none;
 outline: none;
 overflow: hidden;
 position: absolute;
@@ -25,7 +25,7 @@ border-radius: 2px;
             cursor:pointer;
         }
         
-        img.own:hover span.profile{
+        div.hova:hover span.profile{
             display:block;
         }
     </style>
@@ -64,12 +64,15 @@ border-radius: 2px;
             <a class="nav-link" href="/logout">Logout</a>
         </li>
         </ul>
-
-        <img src="<%= user.photos[0].value %>" width="40px" height="40" alt="" style="border-radius: 30px">
+        <div class="hova">
+        <img class="own" src="<%= user.photos[0].value %>" width="40px" height="40" alt="" style="border-radius: 30px">
         <span class="navbar-text profile" style="color: #000;">
             <b> <%= user.displayName %> </b> <br>
-            <%= user.email %>
+            <%= user.email %> <br> <br> <br>
+            <a href="/logout" style="color: #000;">Logout </a>
+            
         </span>
+        </div>
         <% } %>
     </div>
 </nav>

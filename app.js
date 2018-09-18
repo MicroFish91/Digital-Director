@@ -7,12 +7,10 @@ var express         = require('express'),
     session         = require('express-session'),
     GoogleStrategy  = require('passport-google-oauth2').Strategy,
 
-    //ask how to 
+   
     GOOGLE_CLIENT_ID = "521837067682-ojjmkmgmnpquk89i899gphv2dvub3t46.apps.googleusercontent.com",
     GOOGLE_CLIENT_SECRET = "KFfcGOvPDt1MR82t7AzKRB8_",
     SequelizeStore = require('connect-session-sequelize')(session.Store);
-
-
 
     var myStore = new SequelizeStore({ db: db.sequelize })
 
