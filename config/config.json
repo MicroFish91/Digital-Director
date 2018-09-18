@@ -1,23 +1,16 @@
 {
   "development": {
-    "username": "project2",
-    "password": "digitalcrafts",
-    "database": "teachers",
-    "host": "teachers.cmnszmpdj4qq.us-east-2.rds.amazonaws.com",
-    "dialect": "postgres"
-  },
-  "test": {
-    "username": "project2",
-    "password": "digitalcrafts",
-    "database": "teachers",
-    "host": "teachers.cmnszmpdj4qq.us-east-2.rds.amazonaws.com",
+    "username": "teacher",
+    "password": "teacher",
+    "database": "teacher",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "production": {
-    "username": "project2",
-    "password": "digitalcrafts",
-    "database": "teachers",
-    "host": "teachers.cmnszmpdj4qq.us-east-2.rds.amazonaws.com",
+    "username": "teacher",
+    "password": "teacher",
+    "database": "teacher",
+    "host": "localhost",
     "dialect": "postgres"
   }
 }

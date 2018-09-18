@@ -8,8 +8,8 @@ var express         = require('express'),
     cookieParser    = require('cookie-parser'),
     session         = require('express-session'),
     GoogleStrategy  = require('passport-google-oauth2').Strategy,
-    GOOGLE_CLIENT_ID = "521837067682-ojjmkmgmnpquk89i899gphv2dvub3t46.apps.googleusercontent.com",
-    GOOGLE_CLIENT_SECRET = "KFfcGOvPDt1MR82t7AzKRB8_";
+    GOOGLE_CLIENT_ID = "523813251696-vjj6tkdbmgguit2ark56oodrbi346k17.apps.googleusercontent.com",
+    GOOGLE_CLIENT_SECRET = "OvdeSPxtxNX83lBWnk_tjjuS";
 
     var SequelizeStore = require('connect-session-sequelize')(session.Store);
     var myStore = new SequelizeStore({
@@ -23,7 +23,7 @@ var express         = require('express'),
 var strategy = new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/callback",
+    callbackURL: "http://ec2-18-223-131-128.us-east-2.compute.amazonaws.com/auth/google/callback",
     passReqToCallback: true
   },
   function (request, accessToken, refreshToken, profile, done) {
@@ -173,5 +173,5 @@ app.use(function(req, res, next) {
 //   res.status(err.status || 500);
 //   res.render('error');
 // });
-
-server.listen(3000);
+let port = process.env.PORT || 3000;
+server.listen(port);
