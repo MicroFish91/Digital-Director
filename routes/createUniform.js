@@ -1,3 +1,4 @@
+
 let express = require('express'),
 router      = express.Router(),
 db          = require('../models'),
@@ -7,11 +8,13 @@ router.use(bodyParser.urlencoded({extended: false}));
 
 router.post('/createUniform', (req, res) => {
 
+    //Querys student database
     db.student.findAll().then((results) => {
+
+        // Matches selected student to studentId
         let studentId = 0;
         results.forEach(function(e){
             if(req.body.studentName === `${e.firstName} ${e.lastName}`){
-                // console.log(e.id);
                 studentId = e.id;
             }
         })
@@ -19,6 +22,8 @@ router.post('/createUniform', (req, res) => {
         return(studentId);
 
     }).then((student_Id) => {
+
+        // Creates new entry into database
         db.uniforms.create(
             {studentId: student_Id,
             type: req.body.uniformType,
@@ -32,6 +37,8 @@ router.post('/createUniform', (req, res) => {
         )
     })
     .then(()=> {
+
+        //Refresh page
         res.redirect('/uniforms');
     })
 

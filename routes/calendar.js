@@ -18,9 +18,4 @@ router.get('/calendar', function(req, res){
 
 });
 
-// Events - POST
-// router.post('/calendar', function(req, res){
-
-// });
-
 module.exports = router;

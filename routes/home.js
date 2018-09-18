@@ -3,6 +3,7 @@ let express = require('express'),
     db = require('../models'),
     bodyParser = require('body-parser');
 
+// List all students associated with the teacher ID. Order by last name.
 router.get('/home', (req, res) => {
     let students = [];
     db.student.findAll({
@@ -20,7 +21,8 @@ router.get('/home', (req, res) => {
 
             res.render('home', {
                 students: students,
-                page: 'home'
+                page: 'home',
+                user: req.user
             });
         });
 });

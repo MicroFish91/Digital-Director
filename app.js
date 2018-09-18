@@ -1,9 +1,7 @@
 var express         = require('express'),
     app             = express(),
     db              = require('./models'),
-    server          = require('http').createServer(app),
     passport        = require('passport'),
-    util            = require('util'),
     bodyParser      = require('body-parser'),
     cookieParser    = require('cookie-parser'),
     session         = require('express-session'),
@@ -11,10 +9,7 @@ var express         = require('express'),
     GOOGLE_CLIENT_ID = "523813251696-vjj6tkdbmgguit2ark56oodrbi346k17.apps.googleusercontent.com",
     GOOGLE_CLIENT_SECRET = "OvdeSPxtxNX83lBWnk_tjjuS";
 
-    var SequelizeStore = require('connect-session-sequelize')(session.Store);
-    var myStore = new SequelizeStore({
-      db: db.sequelize
-    })
+    var myStore = new SequelizeStore({ db: db.sequelize })
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,18 +22,13 @@ var strategy = new GoogleStrategy({
     passReqToCallback: true
   },
   function (request, accessToken, refreshToken, profile, done) {
-
-    // associate the Google account with a user record in database,
-    // and return that user
     return done(null, profile);
-
   });
 
 passport.use(strategy);
 
 // Serializing and Deserializing
 passport.serializeUser(function (user, done) {
-  // console.log(user);
   done(null, user);
 });
 
@@ -51,12 +41,13 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 
+// ask how this should look like
 app.use(session({
-  key: 'user_id',
-  secret: 'secret_code',
+  key: 'session',
+  secret: 'keyboardcat',
   store: myStore,
-  resave: true,
-  saveUninitialized: true,
+  resave: false,
+  saveUninitialized: false,
   cookie: {
     maxAge: 24 * 60 * 60 * 1000
   }
@@ -82,59 +73,38 @@ app.get('/auth/google', passport.authenticate('google', {
 
 app.get('/auth/google/callback',
   passport.authenticate('google', {
-    successRedirect: '/layout',
+    successRedirect: '/home',
     failureRedirect: '/'
   }
 ));
 
-
-// app.use((req, res, next) => {
-//   if (req.cookies.user_id && !req.session.user) {
-//       res.clearCookie('user_id');
-//   }
-//   next();
-// })
-
-
-app.get('/account', ensureAuthenticated, function (req, res) {
-  res.render('account', {
-    user: req.user,
-    page: 'account'
-  });
-});
-
-// app.get('/home', function (req, res) {
-//   res.render('home', {
-//     user: req.user,
-//     page: 'home'
-//   });
-// });
-
 app.get('/login', function (req, res) {
-  // res.redirect('/testlogin.html')
+  // res.redirect('/auth/google/')
   res.render('login', {
     user: req.user,
     page: 'login'
   });
-  // res.sendFile(__dirname + '/testlogin.html');
 });
 
-app.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/login');
+app.get('/logout', (req, res) => {
+  req.session.destroy(function(e){
+    res.clearCookie('session');
+    req.logout();
+    res.redirect('/');
+  });
 });
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    console.log('you are siged in.')
     return next();
   }
-  console.log('redirected back to login. please log in again.')
-  res.redirect('/login');
+  console.log('redirected to homepage. please log in.')
+  res.redirect('/');
 }
 
 app.use(ensureAuthenticated);
 
+// ** Routes Section **
 app.use(require('./routes/uniforms'));
 app.use(require('./routes/home'));
 app.use(require('./routes/events'));
@@ -151,27 +121,11 @@ app.use(require('./routes/updatestudent'));
 app.use(require('./routes/deletestudent')); 
 app.use(require('./routes/createstudent')); 
 
-app.get('/layout', ensureAuthenticated, function (req, res) {
-    res.render('layout', {
-      user: req.user
-    });
-});
-
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
  
-// error handler
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
- 
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
 let port = process.env.PORT || 3000;
 server.listen(port);

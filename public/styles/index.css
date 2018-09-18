@@ -1,0 +1,183 @@
+.no-padding {
+    position: relative;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
+
+#black{
+    filter: brightness(40%);
+    width:100%;
+}
+.titleText{
+    border: solid black;
+}
+#indexTitle{
+
+    font-family: futura;
+    color: white;
+    font-size: 60px;
+}
+.titleContain{
+    margin-top:15%;
+}
+.titleRow{
+    top:1%;
+    position: absolute;
+}
+
+#indexDesc {
+    font-family: futura;
+    color: white;
+    font-size: 20px;
+}
+#indexLogo{
+    width:99%;
+    margin-top:25%;
+    
+}
+
+
+@media only screen and (max-width: 1100px) {
+    #indexLogo{
+        width:99%;
+        margin-top:20%;
+    }
+    .titleContain{
+        margin-top:10%;
+    }
+}
+
+@media only screen and (max-width: 856px) {
+    #indexLogo{
+        width:99%;
+        margin-top:14%;
+    }
+    
+    .titleContain{
+        margin-top:5%;
+    }
+    #indexTitle{
+
+        font-family: futura;
+        color: white;
+        font-size: 50px;
+    }
+    #indexDesc {
+        font-family: futura;
+        color: white;
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 686px) {
+   
+    #indexLogo{
+        width:90%;
+        margin-top:25%;
+    }
+    .titleContain{
+        margin-top:5%;
+    }
+    #indexTitle{
+
+        font-family: futura;
+        color: white;
+        font-size: 40px;
+    }
+    #indexDesc {
+        font-family: futura;
+        color: white;
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width: 574px) {
+    
+    #indexLogo{
+        width:90%;
+        margin-top:100%;
+    }
+    .titleContain{
+        margin-top:5%;
+        text-align: center;
+        padding-right:30%;
+    }
+    #indexTitle{
+
+        font-family: futura;
+        color: white;
+        font-size: 40px;
+    }
+    #indexDesc {
+        font-family: futura;
+        color: white;
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width: 442px) {
+    
+    #indexLogo{
+        width:90%;
+        margin-top:100%;
+    }
+    .titleContain{
+        margin-top:5%;
+        text-align: center;
+        padding-right:30%;
+    }
+    #indexTitle{
+
+        font-family: futura;
+        color: white;
+        font-size: 35px;
+    }
+    #indexDesc {
+        font-family: futura;
+        color: white;
+        font-size: 13px;
+    }
+}
+
+
+.roster, .scheduling, .communication {
+    color: white;
+    background-color: #777d84;
+}
+.infoHeading {
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+    text-align: center;
+    font-family: futura;
+}
+
+.icon {
+    background-color: white;
+    /*background-color: #1C2027;*/
+    text-align: center;
+}
+.iconImage {
+    height: 150px;
+}
+.icon, .info {
+    height: 331px;
+    padding: 65px;
+}
+.info p {
+    line-height: 27px;
+    letter-spacing: 0.01em;
+    text-align: center;
+}
+
+.footer {
+    padding-top: 60px;
+    text-align: center;
+    height: 200px;
+    background-color: #eaebed;
+}
+.footer img {
+    padding-bottom: 20px;
+    display: block;
+    margin: 0 auto;
+    width: 45px;
+}
+

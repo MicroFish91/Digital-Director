@@ -35,7 +35,8 @@ router.get('/events', function(req, res){
             accordionNames: accordionNames,
             eventNumber: eventNumber,
             page: "events",
-            success: true
+            success: true,
+            user: req.user
         });
 
     })
@@ -47,7 +48,7 @@ router.get('/events', function(req, res){
             accordionNames: [],
             eventNumber: [],
             page: "events",
-            success: false
+            success: false,
         });
     });
     
@@ -189,8 +190,6 @@ function eventsPerAccordion(eventsArray, accordionArray){
         wordCompare = startDates[index];
 
     }
-
-    console.log(events);
 
     // Return array of similar events to match up with Accordion Names Array
     return events;
